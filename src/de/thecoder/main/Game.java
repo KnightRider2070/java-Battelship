@@ -36,8 +36,7 @@ public class Game extends Canvas implements Runnable {
 
         //Adding the first objects
         handler.addObject(new Player(1, 1, ID.Player, handler));
-        handler.addObject(new Destroyer(WIDTH / 2 - 52, HEIGHT / 2 - 52, ID.Destroyer, handler));
-
+        new Player(1, 1, ID.Player, handler).setShip(5, 5, 1, ID.Destroyer);
 
     }
 
@@ -54,7 +53,7 @@ public class Game extends Canvas implements Runnable {
             tempXY[1] = clamp(y * 50 + 100, 100, 600);
             return tempXY;
         } else
-            System.out.println("Error converting cords to pixel!");
+            System.out.println("Error when converting cords to pixel!");
         System.exit(0);
         return null;
     }
@@ -63,7 +62,7 @@ public class Game extends Canvas implements Runnable {
     public static int clamp(int var, int min, int max) {
         if (var >= max)
             return var = max;
-        else if (var >= min)
+        else if (var <= min)
             return var = min;
         else
             return var;

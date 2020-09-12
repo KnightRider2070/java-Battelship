@@ -19,7 +19,19 @@ public class Player extends GameObject {
         y += velY;
     }
 
-    public void setShipPosition(int x, int y, int shipType) {
+    public void setShip(int x, int y, int field, ID id) {
+        if (id == ID.Destroyer) {
+            shipPosition[x][y] = 5;
+            handler.addObject(new Destroyer(Game.cordsToPixelsConv(x, y, field)[0], Game.cordsToPixelsConv(x, y, field)[1], ID.Destroyer, handler));
+        }
+    }
+
+    public void removeShip(int x, int y, int field, ID id) {
+
+        if (id == ID.Destroyer) {
+            shipPosition[x][y] = 0;
+            handler.removeObject(new Destroyer(Game.cordsToPixelsConv(x, y, field)[0], Game.cordsToPixelsConv(x, y, field)[1], ID.Destroyer, handler));
+        }
 
     }
 
