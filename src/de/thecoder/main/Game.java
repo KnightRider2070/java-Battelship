@@ -42,7 +42,7 @@ public class Game extends Canvas implements Runnable {
 
 
         //test
-        player.setShip(5, 5, 1, ID.Destroyer);
+        player.setShip(5, 5, 0, ID.Carrier);
 
 
     }
@@ -53,14 +53,14 @@ public class Game extends Canvas implements Runnable {
         //Array that will be sent back with converted cords
         int[] tempXY = new int[2];
         //Asks which field is involved left or right.
-        if (field == 1) {
+        if (field == 0) {
             //Sets the values for x and y by calculating them and if they are to big or small the clamp methode will set them the right way.
             tempXY[0] = clamp(x * 50, 0, 500);
             tempXY[1] = clamp(y * 50 + 100, 100, 600);
             //Returns the Array with the XY coordinates.
             return tempXY;
             //Does the same as above with other values for field 2.
-        } else if (field == 2) {
+        } else if (field == 1) {
             tempXY[0] = clamp(x * 50 + 1000, 1000, 1500);
             tempXY[1] = clamp(y * 50 + 100, 100, 600);
             return tempXY;
@@ -88,7 +88,7 @@ public class Game extends Canvas implements Runnable {
         if (x < 500) {
 
             //Sets field to one.
-            field = 1;
+            field = 0;
 
             //This is the for loop to check to which field the coordinates in pixels belong only X direction.
             // i = the beginning of one field and z is the boundary of the field and j is the field as array coordinate.
@@ -119,7 +119,7 @@ public class Game extends Canvas implements Runnable {
             //Same as above only for field two so other values same logic.
         } else if (x > 1000) {
 
-            field = 2;
+            field = 1;
 
             for (int i = 1000, z = 1050, j = 0; z <= 1500; i += 50, z += 50, j++) {
                 if (x >= i && x <= z) {
@@ -165,6 +165,10 @@ public class Game extends Canvas implements Runnable {
         else
             //Returns the value not changed
             return var;
+    }
+
+    public void arrayReader(int field) {
+
     }
 
     //Constructor to create a game you need a main methode in Java
@@ -231,6 +235,7 @@ public class Game extends Canvas implements Runnable {
         //Calls the tick Methode of each Class that has one.
         handler.tick();
         hud.tick();
+        player.tick();
     }
 
     //Renders all Objects out as Graphics so that they are visible

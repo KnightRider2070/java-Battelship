@@ -4,7 +4,8 @@ import java.awt.*;
 
 public class Destroyer extends GameObject {
 
-    private final int HEALTH = 2;
+    private static final int HEALTH = 2;
+
     Handler handler;
 
     public Destroyer(int x, int y, ID id, Handler handler) {
@@ -17,10 +18,7 @@ public class Destroyer extends GameObject {
         y += velY;
     }
 
-    //Checks for collision with the missile
-    private void collision() {
 
-    }
 
 
     public void render(Graphics g) {
