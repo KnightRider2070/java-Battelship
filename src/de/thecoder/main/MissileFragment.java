@@ -9,7 +9,7 @@ public class MissileFragment extends GameObject {
     Handler handler;
 
 
-    public MissileFragment(int x, int y, ID id) {
+    public MissileFragment(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
         this.hitX = x;

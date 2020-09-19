@@ -4,26 +4,30 @@ import java.awt.*;
 
 public class Cruiser extends GameObject {
 
-    private static final int HEALTH = 3;
-
     Handler handler;
+    private final int pixelX;
+    private final int pixelY;
+    private final int rotation;
 
-    public Cruiser(int x, int y, ID id, Handler handler) {
-        super(x, y, id);
+    public Cruiser(int pixelX, int pixelY, int rotation, ID id, Handler handler) {
+        super(pixelX, pixelY, id);
         this.handler = handler;
+        this.pixelX = pixelX;
+        this.pixelY = pixelY;
+        this.rotation = rotation;
     }
 
-    public static int getHealth() {
-        return HEALTH;
-    }
 
     public void tick() {
-        x += velX;
-        y += velY;
+
     }
 
     public void render(Graphics g) {
-        if (id == ID.Cruiser) g.setColor(Color.PINK);
-        g.fillRect(x, y, 150, 50);
+        g.setColor(Color.blue);
+        if (rotation == 0) {
+            g.fillRect(pixelX, pixelY, 150, 50);
+        } else if (rotation == 90) {
+            g.fillRect(pixelX, pixelY, 50, 150);
+        }
     }
 }

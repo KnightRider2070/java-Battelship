@@ -4,26 +4,34 @@ import java.awt.*;
 
 public class Destroyer extends GameObject {
 
-    private static final int HEALTH = 2;
 
     Handler handler;
+    private final int pixelX;
+    private final int pixelY;
+    private final int rotation;
 
-    public Destroyer(int x, int y, ID id, Handler handler) {
-        super(x, y, id);
+    public Destroyer(int pixelX, int pixelY, int rotation, ID id, Handler handler) {
+        super(pixelX, pixelY, id);
         this.handler = handler;
+        this.pixelX = pixelX;
+        this.pixelY = pixelY;
+        this.rotation = rotation;
     }
 
+
     public void tick() {
-        x += velX;
-        y += velY;
     }
 
 
 
 
     public void render(Graphics g) {
-        if (id == ID.Destroyer) g.setColor(Color.GREEN);
-        g.fillRect(x, y, 100, 50);
+        g.setColor(Color.ORANGE);
+        if (rotation == 0) {
+            g.fillRect(pixelX, pixelY, 100, 50);
+        } else if (rotation == 90) {
+            g.fillRect(pixelX, pixelY, 50, 100);
+        }
     }
 
 

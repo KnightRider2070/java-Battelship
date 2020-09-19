@@ -4,27 +4,31 @@ import java.awt.*;
 
 public class Submarine extends GameObject {
 
-    private static final int HEALTH = 3;
 
     Handler handler;
+    private final int pixelX;
+    private final int pixelY;
+    private final int rotation;
 
-    public Submarine(int x, int y, ID id, Handler handler) {
-        super(x, y, id);
+    public Submarine(int pixelX, int pixelY, int rotation, ID id, Handler handler) {
+        super(pixelX, pixelY, id);
         this.handler = handler;
-    }
-
-    public static int getHealth() {
-        return HEALTH;
+        this.pixelX = pixelX;
+        this.pixelY = pixelY;
+        this.rotation = rotation;
     }
 
     public void tick() {
-        x += velX;
-        y += velY;
+
     }
 
     public void render(Graphics g) {
-        if (id == ID.Submarine) g.setColor(Color.PINK);
-        g.fillRect(x, y, 150, 50);
+        g.setColor(Color.PINK);
+        if (rotation == 0) {
+            g.fillRect(pixelX, pixelY, 150, 50);
+        } else if (rotation == 90) {
+            g.fillRect(pixelX, pixelY, 50, 150);
+        }
     }
 
 }

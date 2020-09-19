@@ -20,7 +20,6 @@ public class Game extends Canvas implements Runnable {
     private final Handler handler;
     private final Player player;
 
-
     //The Game logic and object initialisation
     public Game() {
 
@@ -42,14 +41,18 @@ public class Game extends Canvas implements Runnable {
 
 
         //test
-        player.setShip(5, 5, 0, ID.Carrier);
+        player.setShip(2, 2, 90, 0, 2);
 
+    }
 
+    //Constructor to create a game you need a main methode in Java
+    public static void main(String[] args) {
+        new Game();
     }
 
     //Converts the coordinates to pixels so that you can draw the object there
     //tempXY[] | [1] = x | [2] =y
-    public static int[] cordsToPixelsConv(int x, int y, int field) {
+    public static int[] cordsToPixels(int x, int y, int field) {
         //Array that will be sent back with converted cords
         int[] tempXY = new int[2];
         //Asks which field is involved left or right.
@@ -74,7 +77,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     //Converts the coordinates to pixels so that you can draw the object there
-    public static int[] pixelsToCordConv(int x, int y) {
+    public static int[] pixelsToCord(int x, int y) {
         //The array that will contain the XY coordinates and the calculated field.
         int[] tempXYF = new int[3];
         //Field integer
@@ -87,8 +90,6 @@ public class Game extends Canvas implements Runnable {
         //Checks if the give X value is smaller than 500 this means field one.
         if (x < 500) {
 
-            //Sets field to one.
-            field = 0;
 
             //This is the for loop to check to which field the coordinates in pixels belong only X direction.
             // i = the beginning of one field and z is the boundary of the field and j is the field as array coordinate.
@@ -151,6 +152,69 @@ public class Game extends Canvas implements Runnable {
         return null;
     }
 
+
+    public static GameObject shipTypeToObject(int shipType, int arrayX, int arrayY, int field, int rotation, Handler handler) {
+
+        int[] cords = Game.cordsToPixels(arrayX, arrayY, field);
+
+        int pixelX = cords[0];
+        int pixelY = cords[1];
+
+        if (shipType == 1)
+            return new Carrier(pixelX, pixelY, rotation, ID.Carrier, handler);
+        if (shipType == 2)
+            return new Battleship(pixelX, pixelY, rotation, ID.Battleship, handler);
+        if (shipType == 3)
+            return new Cruiser(pixelX, pixelY, rotation, ID.Cruiser, handler);
+        if (shipType == 4)
+            return new Submarine(pixelX, pixelY, rotation, ID.Submarine, handler);
+        if (shipType == 5)
+            return new Destroyer(pixelX, pixelY, rotation, ID.Destroyer, handler);
+
+        System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToObject");
+        return null;
+    }
+
+    //Validates if the shipType exists.
+    public static boolean validateShipType(int shipType) {
+        return shipType >= 1 && shipType <= 5;
+    }
+
+    //Converts the shipType integer to an ID
+    public static ID shipTypeToID(int shipType) {
+        if (shipType == 1)
+            return ID.Carrier;
+        if (shipType == 2)
+            return ID.Battleship;
+        if (shipType == 3)
+            return ID.Cruiser;
+        if (shipType == 4)
+            return ID.Submarine;
+        if (shipType == 5)
+            return ID.Destroyer;
+
+        System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToID");
+        return null;
+    }
+
+    //Converts the shipType integer to the shipSize
+    public static int shipTypeToSize(int shipType) {
+        //Ship size starts with 0
+        if (shipType == 1)
+            return 4;
+        if (shipType == 2)
+            return 3;
+        if (shipType == 3)
+            return 2;
+        if (shipType == 4)
+            return 2;
+        if (shipType == 5)
+            return 1;
+
+        System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToSize");
+        return 0;
+    }
+
     //This clamp methode allows to be used in the tick methode and with it you can let a value never exceed the max or min
     public static int clamp(int var, int min, int max) {
         //Checks if the value is higher or equal the max.
@@ -167,14 +231,6 @@ public class Game extends Canvas implements Runnable {
             return var;
     }
 
-    public void arrayReader(int field) {
-
-    }
-
-    //Constructor to create a game you need a main methode in Java
-    public static void main(String[] args) {
-        new Game();
-    }
 
     //Thread start
     public synchronized void start() {

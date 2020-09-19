@@ -4,27 +4,32 @@ import java.awt.*;
 
 public class Battleship extends GameObject {
 
-    private static final int HEALTH = 4;
-
     Handler handler;
+    private final int pixelX;
+    private final int pixelY;
+    private final int rotation;
 
-    public Battleship(int x, int y, ID id, Handler handler) {
-        super(x, y, id);
+
+    public Battleship(int pixelX, int pixelY, int rotation, ID id, Handler handler) {
+        super(pixelX, pixelY, id);
         this.handler = handler;
+        this.pixelX = pixelX;
+        this.pixelY = pixelY;
+        this.rotation = rotation;
     }
 
-    public static int getHealth() {
-        return HEALTH;
-    }
 
     public void tick() {
-        x += velX;
-        y += velY;
+
     }
 
     public void render(Graphics g) {
-        if (id == ID.Battleship) g.setColor(Color.PINK);
-        g.fillRect(x, y, 200, 50);
+        g.setColor(Color.magenta);
+        if (rotation == 0) {
+            g.fillRect(pixelX, pixelY, 200, 50);
+        } else if (rotation == 90) {
+            g.fillRect(pixelX, pixelY, 50, 200);
+        }
     }
 
 }
