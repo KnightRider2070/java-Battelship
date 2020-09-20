@@ -17,7 +17,6 @@ public class Player extends GameObject {
     }
 
     //Creates a ship and adds it to the array.
-    //FIXME: Ship out of field
     public void setShip(int arrayX, int arrayY, int rotation, int field, int shipType) {
 
         if (!Game.validateShipType(shipType))
@@ -38,7 +37,7 @@ public class Player extends GameObject {
             }
         } else if (rotation == 90) {
             for (int i = 0; i <= shipSize; i++) {
-                if (arrayX >= Game.shipPosition.length && arrayY + i >= Game.shipPosition.length) {
+                if (arrayX <= Game.shipPosition.length && arrayY + i <= Game.shipPosition.length) {
                     Game.shipPosition[arrayX][arrayY + i][field] = shipType;
                     handler.addObject(Game.shipTypeToObject(shipType, arrayX, arrayY, field, rotation, handler));
                 } else {
@@ -58,14 +57,22 @@ public class Player extends GameObject {
         return Game.shipPosition[x][y][field] != 0;
     }
 
-    //Returns the Ship type at a position XY that is given in array coordinates.
-    public ID getShipType(int x, int y, int field) {
-        return ID.Player;
+    public int getShipInArray(int arrayX, int arrayY, int field) {
+        if (Game.shipPosition[arrayX][arrayY][field] != 0) {
+            return Game.shipPosition[arrayX][arrayY][field];
+        } else {
+            System.out.println("ERROR: There is no ship Methode: getShipInArray");
+            System.exit(1);
+            return 0;
+        }
     }
 
-    //Gets the int of the ship
-    public int getShipCondition(int arrayX, int arrayY, int field) {
-        return 1;
+    public boolean checkIfShipIsHit(int arrayX, int arrayY, int field, int shipType) {
+        return Game.shipPosition[arrayX][arrayY][field] == shipType * 11;
+    }
+
+    public boolean checkIfShipDestroyed() {
+        return true;
     }
 
     //Gets called from Mouse Input XY coordinates are pixels.
@@ -81,23 +88,22 @@ public class Player extends GameObject {
         int pixelX = pixelCoordinates[0];
         int pixelY = pixelCoordinates[1];
 
-        //Ship ID
-        ID id;
+        int shipTypeInt = getShipInArray(arrayX, arrayY, field);
+
         //If at the position where you clicked is a ship it will call the next methode.
-        if (checkIfShip(arrayX, arrayY, field)) {
-            //Sets the ship ID into an ID variable
-            id = getShipType(arrayX, arrayY, field);
-            //Executes the Attack methode with the raw pixel coordinates.
-            Attack(pixelX, pixelY, arrayX, arrayY, field, id);
+        if (checkIfShip(arrayX, arrayY, field) && !checkIfShipIsHit(arrayX, arrayY, field, shipTypeInt)) {
+            //Executes the Attack methode with pixel coordinates.
+            Attack(pixelX, pixelY, arrayX, arrayY, field, shipTypeInt);
         }
     }
 
     //Attacks the ship and creates a missile, the XY coordinates are pixels.
-    public void Attack(int pixelX, int pixelY, int arrayX, int arrayY, int field, ID id) {
+    public void Attack(int pixelX, int pixelY, int arrayX, int arrayY, int field, int shipType) {
+
         //Adds a missile to the game at the position of the click.
         //TODO: Center the creation at the fields
         handler.addObject(new Missile(pixelX, pixelY, ID.Missile, handler));
-
+        Game.shipPosition[arrayX][arrayY][field] = shipType * 11;
         //Because this only gets executed when a ship is hit it will show the message Hit
         //TODO: Separate the Player Messages so that both are possible to win and get a hit.
         HUD.setMessageOne("HIT!");

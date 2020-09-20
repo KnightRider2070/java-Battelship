@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
 
 
         //test
-        player.setShip(2, 2, 90, 0, 2);
+        player.setShip(5, 6, 90, 0, 2);
 
     }
 
