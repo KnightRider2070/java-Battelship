@@ -39,9 +39,8 @@ public class Game extends Canvas implements Runnable {
         //Creating the Window with the game in it
         new Window(WIDTH, HEIGHT, "Battelship", this);
 
-
         //test
-        player.setShip(5, 6, 90, 0, 2);
+        player.setShip(5, 5, 90, 0, 2);
 
     }
 
