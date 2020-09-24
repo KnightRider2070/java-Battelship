@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
 
         //test
         player.setShip(5, 5, 90, 0, 2);
-
+        player.setShip(5, 3, 0, 0, 2);
     }
 
     //Constructor to create a game you need a main methode in Java
@@ -199,16 +199,16 @@ public class Game extends Canvas implements Runnable {
     //Converts the shipType integer to the shipSize
     public static int shipTypeToSize(int shipType) {
         //Ship size starts with 0
-        if (shipType == 1)
+        if (shipType == 1 || shipType == 11)
+            return 5;
+        if (shipType == 2 || shipType == 22)
             return 4;
-        if (shipType == 2)
+        if (shipType == 3 || shipType == 33)
             return 3;
-        if (shipType == 3)
+        if (shipType == 4 || shipType == 44)
+            return 3;
+        if (shipType == 5 || shipType == 55)
             return 2;
-        if (shipType == 4)
-            return 2;
-        if (shipType == 5)
-            return 1;
 
         System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToSize");
         return 0;
