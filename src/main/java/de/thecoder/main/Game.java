@@ -5,49 +5,70 @@ import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
 
-    //Game Window Size
+    //This are the HEIGHT and WIDTH of the window that should be created. It's final because the size won't change.
     public static final int WIDTH = 1570, HEIGHT = 750;
-    //Game hud
-    private final HUD hud;
-    //Size of a cell where a ship is placed
-    private final int cellSize = 50;
-    //Threads at that the game runs
-    private Thread thread;
-    //Is the game running boolean
-    private boolean running = false;
+    //shipsAliveOne is the amount of ships that the player one has to begin the game. It's initialised with 5. It's static so that it could be accessed by all other classes.
+    public static int shipsAliveOne = 5;
+    //shipsAliveTwo is the amount of ships that the player two has to begin the game. It's initialised with 5. It's static so that it could be accessed by all other classes.
+    public static int shipsAliveTwo = 5;
+    //Initialises a integer array shipPosition with the size X = 10,Y = 10, Z = 2. It's static so that it could be accessed by all other classes.
     static int[][][] shipPosition = new int[10][10][2];
-    //Game object handler
+    //References the handler to a Handler. It's final because this handler should always be the same.
     private final Handler handler;
+    //References the hud to a HUD. It's final because this hud should always be the same.
+    private final HUD hud;
+    //References the player to a Player. It's final because this player should always be the same.
     private final Player player;
+    //This is the size of one cell that you can see in the game. It's final because this should always stay the same.
+    private final int cellSize = 50;
+    //References the thread to a Thread. Those are the Threads at that the game run.
+    private Thread thread;
+    //Assigns the boolean running the value false, cuz it's not running.
+    private boolean running = false;
 
     //The Game logic and object initialisation
     public Game() {
 
-        //Creating THE handler
+        //Assigns the handler a new Handler.
         handler = new Handler();
-        //Creating the hud
+        //Assigns the hud a new Hud.
         hud = new HUD();
-        //Adding the first player
+        //It adds the first player to the battlefield.
         player = new Player(1, 1, ID.Player, handler, hud);
-
         //Creating listener for Key input
         this.addKeyListener(new KeyInput(handler));
-
+        //Creating listener for Mouse input
         this.addMouseListener(new MouseInput(handler, player));
 
-
-        //Creating the Window with the game in it
+        //Creating the Window with the game in it.
         new Window(WIDTH, HEIGHT, "Battelship", this);
 
         //test
         player.setShip(5, 5, 90, 0, 2);
-        player.setShip(5, 3, 0, 0, 2);
+        player.setShip(5, 3, 0, 0, 1);
     }
 
     //Constructor to create a game you need a main methode in Java
     public static void main(String[] args) {
         new Game();
     }
+
+    public void setSipsAliveOne(int shipsAliveOne) {
+        Game.shipsAliveOne = shipsAliveOne;
+    }
+
+    public int getShipsAliveOne() {
+        return Game.shipsAliveOne;
+    }
+
+    public void setSipsAliveTwo(int shipsAliveTwo) {
+        Game.shipsAliveTwo = shipsAliveTwo;
+    }
+
+    public int getShipsAliveTwo() {
+        return Game.shipsAliveTwo;
+    }
+
 
     //Converts the coordinates to pixels so that you can draw the object there
     //tempXY[] | [1] = x | [2] =y
@@ -290,7 +311,6 @@ public class Game extends Canvas implements Runnable {
         //Calls the tick Methode of each Class that has one.
         handler.tick();
         hud.tick();
-        player.tick();
     }
 
     //Renders all Objects out as Graphics so that they are visible

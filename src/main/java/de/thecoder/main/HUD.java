@@ -1,14 +1,13 @@
 package de.thecoder.main;
 
+// ---------------------------------------- Imported Libraries ---------------------------------------- //
+
 import java.awt.*;
 
 public class HUD {
 
-    //IS the amount of ships that still exist Player One.
-    public static int shipsAliveOne = 5;
+// ---------------------------------------- Global Variables ---------------------------------------- //
 
-    //IS the amount of ships that still exist Player Two.
-    public static int shipsAliveTwo = 5;
     //Is the message String for the first player.
     public static String messageOne;
     //Is the message String for the second player.
@@ -22,23 +21,7 @@ public class HUD {
         HUD.messageTwo = message;
     }
 
-
-    public void setSipsAliveOne(int shipsAliveOne) {
-        HUD.shipsAliveOne = shipsAliveOne;
-    }
-
-    public int getShipsAliveOne() {
-        return shipsAliveOne;
-    }
-
-    public void setSipsAliveTwo(int shipsAliveTwo) {
-        HUD.shipsAliveTwo = shipsAliveTwo;
-    }
-
-    public int getShipsAliveTwo() {
-        return shipsAliveTwo;
-    }
-
+// ---------------------------------------- Initialising Methods ---------------------------------------- //
 
     public void tick() {
         if (messageOne == null)
@@ -53,13 +36,13 @@ public class HUD {
         g.setColor(Color.BLUE);
         Font font = new Font("Ariel", Font.PLAIN, 25);
         g.setFont(font);
-        g.drawString("Ships Alive: " + shipsAliveOne, 15, 40);
+        g.drawString("Ships Alive: " + Game.shipsAliveOne, 15, 40);
 
         g.setColor(Color.GRAY);
         g.fillRect(1050, 15, 200, 32);
         g.setColor(Color.BLUE);
         g.setFont(font);
-        g.drawString("Ships Alive: " + shipsAliveTwo, 1050, 40);
+        g.drawString("Ships Alive: " + Game.shipsAliveTwo, 1050, 40);
 
 
         g.setColor(Color.CYAN);

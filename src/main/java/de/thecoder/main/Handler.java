@@ -1,12 +1,20 @@
 package de.thecoder.main;
 
+// ---------------------------------------- Imported Libraries ---------------------------------------- //
+
+
 import java.awt.*;
 import java.util.LinkedList;
 
 public class Handler {
 
+    // ---------------------------------------- Global Variables ---------------------------------------- //
+
     //List with all game objects
     LinkedList<GameObject> object = new LinkedList<GameObject>();
+
+    // ---------------------------------------- Initialising Methods ---------------------------------------- //
+
 
     public void tick() {
         for (int i = 0; i < object.size(); i++) {
@@ -21,6 +29,9 @@ public class Handler {
             tempObject.render(g);
         }
     }
+
+    // ---------------------------------------- Logic Methods ---------------------------------------- //
+
 
     //Adds an object
     public void addObject(GameObject object) {
