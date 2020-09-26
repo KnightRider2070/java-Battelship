@@ -22,5 +22,5 @@ Pull requests are welcome. For changes, please open an issue first to discuss wh
 ### Size
 ![Size og the repo Image](https://img.shields.io/github/repo-size/KnightRider2070/java-Battelship?style=for-the-badge)
 
-###Download Versions
+### Download Versions
 ![Download latest Pre Release](https://img.shields.io/github/downloads-pre/KnightRider2070/java-Battelship/latest/total?style=for-the-badge)
