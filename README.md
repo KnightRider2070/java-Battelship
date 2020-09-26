@@ -15,7 +15,10 @@ Main Class: Game
 ## Contributing
 Pull requests are welcome. For changes, please open an issue first to discuss what you would like to change.
 
-
+## In Progress (TODO)
+- [x] Creating the basic logic.
+- [] Creating methode to allow player to create ship with mouse on startup.
+- [] Creating methode to change players after startup.
 
 ## Download
 
