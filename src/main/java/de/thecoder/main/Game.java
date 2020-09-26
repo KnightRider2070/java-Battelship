@@ -1,9 +1,15 @@
 package de.thecoder.main;
 
+// ---------------------------------------- Imported Libraries ---------------------------------------- //
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
+
+
+    // ---------------------------------------- Global Variables ---------------------------------------- //
+
 
     //This are the HEIGHT and WIDTH of the window that should be created. It's final because the size won't change.
     public static final int WIDTH = 1570, HEIGHT = 750;
@@ -26,6 +32,10 @@ public class Game extends Canvas implements Runnable {
     //Assigns the boolean running the value false, cuz it's not running.
     private boolean running = false;
 
+
+    // ---------------------------------------- Initialising Methods ---------------------------------------- //
+
+
     //The Game logic and object initialisation
     public Game() {
 
@@ -44,143 +54,167 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Battelship", this);
 
         //test
-        player.setShip(5, 5, 90, 0, 2);
-        player.setShip(5, 3, 0, 0, 1);
+        player.setShip(1, 5, 0, 2, 0);
+        player.setShip(6, 3, 0, 1, 90);
     }
 
-    //Constructor to create a game you need a main methode in Java
+
+    // ---------------------------------------- Logic Methods ---------------------------------------- //
+
+    //Constructor to create a game you need a main methode in Java.
     public static void main(String[] args) {
         new Game();
     }
 
-    public void setSipsAliveOne(int shipsAliveOne) {
-        Game.shipsAliveOne = shipsAliveOne;
-    }
 
-    public int getShipsAliveOne() {
-        return Game.shipsAliveOne;
-    }
+    // ---------------------------------------- Query Methods ---------------------------------------- //
 
-    public void setSipsAliveTwo(int shipsAliveTwo) {
-        Game.shipsAliveTwo = shipsAliveTwo;
-    }
-
-    public int getShipsAliveTwo() {
-        return Game.shipsAliveTwo;
-    }
-
-
-    //Converts the coordinates to pixels so that you can draw the object there
-    //tempXY[] | [1] = x | [2] =y
-    public static int[] cordsToPixels(int x, int y, int field) {
-        //Array that will be sent back with converted cords
-        int[] tempXY = new int[2];
-        //Asks which field is involved left or right.
-        if (field == 0) {
-            //Sets the values for x and y by calculating them and if they are to big or small the clamp methode will set them the right way.
-            tempXY[0] = clamp(x * 50, 0, 500);
-            tempXY[1] = clamp(y * 50 + 100, 100, 600);
-            //Returns the Array with the XY coordinates.
-            return tempXY;
-            //Does the same as above with other values for field 2.
-        } else if (field == 1) {
-            tempXY[0] = clamp(x * 50 + 1000, 1000, 1500);
-            tempXY[1] = clamp(y * 50 + 100, 100, 600);
-            return tempXY;
-            //If the wrong field is given you'll get a error message with the reason.
-        } else
-            //Message
-            System.out.println("ERROR when converting cords to pixel! FIELD error!");
-        //Program closes
-        System.exit(0);
-        return null;
-    }
-
-    //Converts the coordinates to pixels so that you can draw the object there
-    public static int[] pixelsToCord(int x, int y) {
-        //The array that will contain the XY coordinates and the calculated field.
+    /* pixelsToCord is a query methode.
+     * The Methode will convert pixel coordinates to array cords.
+     * @param pixelX         Is an integer which are the converted cords at the X axis from the mouse courser.
+     * @param pixelY         Is an integer which are the converted cords at the Y axis from the mouse courser.
+     * @param return         Is an integer array which is sent back with the array XY and field cords.
+     */
+    public static int[] pixelsToCord(int pixelX, int pixelY) {
+        //tempXYF is an array which contains the return values.
         int[] tempXYF = new int[3];
-        //Field integer
+        //field is an integer which should contain the field for return.
         int field = 0;
-        //Converted X coordinate
+        //convX is an integer which should contain the array X axis cord for return.
         int convX = 0;
-        //Converted Y coordinate
+        //convY is an integer which should contain the array Y axis cord for return.
         int convY = 0;
 
-        //Checks if the give X value is smaller than 500 this means field one.
-        if (x < 500) {
-
-
-            //This is the for loop to check to which field the coordinates in pixels belong only X direction.
-            // i = the beginning of one field and z is the boundary of the field and j is the field as array coordinate.
+        //If statement will checks if the pixelX is smaller that 500 this means it is field 0.
+        if (pixelX < 500) {
+            //For loop will loop through the X pixels. i is the beginning of a field z is the end of a field added 50 so that one field is looped through.
+            //This is the reason why j only get added 1 it is the array cord.
             for (int i = 0, z = 50, j = 0; z <= 500; i += 50, z += 50, j++) {
-                if (x >= i && x <= z) {
+                //If statement will check if the cords are in the possible field.
+                if (pixelX >= i && pixelX <= z) {
+                    //Assigns convX the j value which equals the array cord.
                     convX = j;
+                    //Breaks the fort loop cuz the coordinate is found.
                     break;
                 }
-
             }
 
-            //This is the for loop to check to which field the coordinates in pixels belong only Y direction.
-            // i = the beginning of one field and z is the boundary of the field and j is the field as array coordinate.
+            //Equals code above only the field beginning has changed.
             for (int i = 100, z = 150, j = 0; z <= 600; i += 50, z += 50, j++) {
-                if (y >= i && y <= z) {
+                if (pixelY >= i && pixelY <= z) {
                     convY = j;
                     break;
                 }
             }
 
-            //Then the tried values get written into the array and checked if they are possible and if not they will be made possible.
+            //Assigns the tempXYF array the calculated coordinates. No field assignment cuz its already 0 since initialisation.
             tempXYF[0] = clamp(convX, 0, 10);
             tempXYF[1] = clamp(convY, 0, 10);
-            tempXYF[2] = field;
-            //Returns the array
+            //Returns the tempXYF array.
             return tempXYF;
 
-            //Same as above only for field two so other values same logic.
-        } else if (x > 1000) {
-
+            //Equals code above only the field has changed.
+        } else if (pixelX > 1000) {
+            //Assigns the field integer to field 1.
             field = 1;
 
             for (int i = 1000, z = 1050, j = 0; z <= 1500; i += 50, z += 50, j++) {
-                if (x >= i && x <= z) {
+                if (pixelX >= i && pixelX <= z) {
                     convX = j;
                     break;
                 }
             }
 
             for (int i = 100, z = 150, j = 0; z <= 600; i += 50, z += 50, j++) {
-                if (y >= i && y <= z) {
+                if (pixelY >= i && pixelY <= z) {
                     convY = j;
                     break;
                 }
             }
 
-
+            //Assigns the tempXYF array the calculated coordinates.
             tempXYF[0] = clamp(convX, 0, 10);
             tempXYF[1] = clamp(convY, 0, 10);
             tempXYF[2] = field;
+            //Returns the tempXYF array.
             return tempXYF;
 
-            //Will give an error message if you click not at a field.
+            //When you the pixel cords are out of boundaries it will causes an error message and a exit.
         } else {
-            //Message
             System.out.println("Error when converting pixels to cords! Not in the field.");
-            //Closes Program
-            System.exit(0);
+            //Program closes
+            System.exit(1);
         }
         return null;
     }
 
 
-    public static GameObject shipTypeToObject(int shipType, int arrayX, int arrayY, int field, int rotation, Handler handler) {
+    /* cordsToPixels is a query methode.
+     * The Methode will convert array coordinates to pixel.
+     * @param arrayX           Is an integer in array value which should contain the X axis cord.
+     * @param arrayY           Is an integer in array value which should contain the Y axis cord.
+     * @param field            Is an integer which should be 0(Player One) or 1(Player Two) is the layer with ship cords.
+     * @param return           Is an integer array which is sent back with the pixel XY cords.
+     */
+    public static int[] cordsToPixels(int arrayX, int arrayY, int field) {
+        //tempXY is an array which contains the return values.
+        int[] tempXY = new int[2];
+        //If statement will check which field cords should be converted.
+        if (field == 0) {
+            //tempXY gets values assigned. Those are calculated multiplied by 50 because one field is 50 pixel big. Clamp methode used that the value can't exceed max and min.
+            tempXY[0] = clamp(arrayX * 50, 0, 500);
+            //tempXY gets values assigned. Those are calculated multiplied by 50 because one field is 50 pixel big added 100 cuz the field starts after 100 pixel.
+            //Clamp methode used that the value can't exceed max and min.
+            tempXY[1] = clamp(arrayY * 50 + 100, 100, 600);
+            //Returns the tempXY array.
+            return tempXY;
+            //Equals code above only the field has changed.
+        } else if (field == 1) {
+            tempXY[0] = clamp(arrayX * 50 + 1000, 1000, 1500);
+            tempXY[1] = clamp(arrayY * 50 + 100, 100, 600);
+            return tempXY;
+            //When you enter the wrong field value the methode will cause an error message and exits the program.
+        } else
+            System.out.println("ERROR: Entered wrong field. Methode: cordsToPixels");
+        //Program closes
+        System.exit(1);
+        return null;
+    }
 
+
+    /* validateShipType is a query methode.
+     * The Methode will check if the shipType is suitable.
+     * @param shipType         Is an integer which should be 1/2/3/4/5 for each ship Type. (See GameDoc)
+     * @param return           Is a boolean true if shipType is 1 up to 5, false if not.
+     */
+    public static boolean validateShipType(int shipType) {
+        //Returns true or false simplified if statement.
+        return shipType >= 1 && shipType <= 5;
+    }
+
+
+    /* shipTypeToObject is a query methode.
+     * The Methode will convert array coordinates and ship type to a GameObject.
+     * @param arrayX           Is an integer in array value which should contain the X axis cord.
+     * @param arrayY           Is an integer in array value which should contain the Y axis cord.
+     * @param field            Is an integer which should be 0(Player One) or 1(Player Two) is the layer with ship cords.
+     * @param shipType         Is an integer which should be 1/2/3/4/5 for each ship Type. (See GameDoc)
+     * @param rotation         Is an integer which contains the rotation of the ship possible is 0 and 90.
+     * @param handler          Is the handler that is assigned it should be the handler that is initialised in the Game class.
+     * @param return           Is a Game Object that is returned.
+     */
+    public static GameObject shipTypeToObject(int arrayX, int arrayY, int field, int shipType, int rotation, Handler handler) {
+
+        //cords is an array which gets the pixel cords assigned that are calculated by the array cords.
         int[] cords = Game.cordsToPixels(arrayX, arrayY, field);
-
+        //pixelX gets the value from the array assigned which contains the pixel X axis value.
         int pixelX = cords[0];
+        //pixelY gets the value from the array assigned which contains the pixel Y axis value.
         int pixelY = cords[1];
 
+        //If statement will checks which ship type is given.
         if (shipType == 1)
+            //Returns a new created Carrier without adding it to the render.
             return new Carrier(pixelX, pixelY, rotation, ID.Carrier, handler);
         if (shipType == 2)
             return new Battleship(pixelX, pixelY, rotation, ID.Battleship, handler);
@@ -191,18 +225,23 @@ public class Game extends Canvas implements Runnable {
         if (shipType == 5)
             return new Destroyer(pixelX, pixelY, rotation, ID.Destroyer, handler);
 
+        //This will get executed if non of this if statements will be true. An error message will be printed out, exits and null returns.
         System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToObject");
+        //Program close
+        System.exit(1);
         return null;
     }
 
-    //Validates if the shipType exists.
-    public static boolean validateShipType(int shipType) {
-        return shipType >= 1 && shipType <= 5;
-    }
 
-    //Converts the shipType integer to an ID
+    /* shipTypeToID is a query methode.
+     * The Methode will return the ID of a ship.
+     * @param shipType         Is an integer which should be 1/2/3/4/5 for each ship Type. (See GameDoc)
+     * @param return           Is ID that is returned IDs can be found in ID class.
+     */
     public static ID shipTypeToID(int shipType) {
+        //If statement will check if the shipType is a ship.
         if (shipType == 1)
+            //Returns the ID.Carrier cuz it belongs to shipType 1. (See GameDoc)
             return ID.Carrier;
         if (shipType == 2)
             return ID.Battleship;
@@ -213,14 +252,24 @@ public class Game extends Canvas implements Runnable {
         if (shipType == 5)
             return ID.Destroyer;
 
+        //This will get executed if non of this if statements will be true. An error message will be printed out, exits and null returns.
         System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToID");
+        //Program close
+        System.exit(1);
         return null;
     }
 
-    //Converts the shipType integer to the shipSize
+
+    /* shipTypeToSize is a query methode.
+     * The Methode will return the size of a ship based on the type.
+     * @param shipType         Is an integer which should be 1/2/3/4/5 for each ship Type. (See GameDoc)
+     * @param return           Is an integer which contains the ship size.
+     */
     public static int shipTypeToSize(int shipType) {
-        //Ship size starts with 0
+
+        //If statement will check if the ship is a ship or destroyed ship.
         if (shipType == 1 || shipType == 11)
+            //Returns 5 this is the size of a ship from the type 1. (See GameDoc)
             return 5;
         if (shipType == 2 || shipType == 22)
             return 4;
@@ -231,52 +280,118 @@ public class Game extends Canvas implements Runnable {
         if (shipType == 5 || shipType == 55)
             return 2;
 
+        //This will get executed if non of this if statements will be true. An error message will be printed out, exits and 0 returns.
         System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToSize");
+        //Program close
+        System.exit(1);
         return 0;
     }
 
-    //This clamp methode allows to be used in the tick methode and with it you can let a value never exceed the max or min
+
+    /* clamp is a query methode.
+     * The Methode will check if the entered value exceed the min max entered value and if so sets it..
+     * @param var         Is an integer that should be checked.
+     * @param min         Is an integer that contains the minimal value of var.
+     * @param max         Is an integer that contains the maximal value of var.
+     * @param return      Is an integer that contains the raw var or the clamped var.
+     */
     public static int clamp(int var, int min, int max) {
-        //Checks if the value is higher or equal the max.
+        //If statement will check if the var is bigger or equals the max value.
         if (var >= max)
-            //Returns the max value
+            //Returns the max value cuz var exceeded it or was equal.
             return var = max;
-            //Checks if the value is less or equal min.
+            //If statement will check if the var is smaller or equals the mun value.
         else if (var <= min)
-            //Returns the min value
+            //Returns the min value cuz var exceeded it or was equal.
             return var = min;
             //If the value is not equal min or max and do not exceed those you will get it back.
         else
-            //Returns the value not changed
+            //Returns the var untouched.
             return var;
     }
 
 
-    //Thread start
+    // ---------------------------------------- Setter Methods ---------------------------------------- //
+
+    /*
+     * setShipsAliveTwo is a setter method.
+     * The Methode will set the ships alive value for player two.
+     * @param shipsAliveTwo          Is an integer for player two how many ships still exist.
+     */
+    public void setSipsAliveTwo(int shipsAliveTwo) {
+        Game.shipsAliveTwo = clamp(shipsAliveTwo, 0, 5);
+    }
+
+    /*
+     * getShipsAliveOne is a getter method.
+     * The Methode will get the ships alive value for player one.
+     * @param return          Is an integer for player one how many ships still exist.
+     */
+    public int getShipsAliveOne() {
+        return Game.shipsAliveOne;
+    }
+
+
+    // ---------------------------------------- Getter Methods ---------------------------------------- //
+
+    /*
+     * setShipsAliveOne is a setter method.
+     * The Methode will set the ships alive value for player one.
+     * @param shipsAliveOne          Is an integer for player one how many ships still exist.
+     */
+    public void setShipsAliveOne(int shipsAliveOne) {
+        Game.shipsAliveOne = clamp(shipsAliveOne, 0, 5);
+    }
+
+    /*
+     * setShipsAliveTwo is a getter method.
+     * The Methode will get the ships alive value for player two.
+     * @param return          Is an integer for player two how many ships still exist.
+     */
+    public int getShipsAliveTwo() {
+        return Game.shipsAliveTwo;
+    }
+
+
+    // ---------------------------------------- Runner Methods ---------------------------------------- //
+
+
+    /*
+     * The methode start is synchronized cuz only then the changes are definitely visible.
+     * All other synchronized methods will be executed after this not parallel.
+     * Only one thread is created this means it's a single threaded application. One command at a time.
+     */
     public synchronized void start() {
-        //Creates a new Thread
+        //Creates a new Thread and targets this Game class.
         thread = new Thread(this);
-        //Starts the new Thread
+        //Starts the new Thread.
         thread.start();
-        //Sets boolean running true
+        //Sets boolean running true.
         running = true;
     }
 
-    //Thread stop
+    /*
+     * The methode stop is synchronized cuz only then the changes are definitely visible.
+     * Stops the thread the program else wont exit.
+     */
     public synchronized void stop() {
-        //Tries to stop the thread we might expect an error
+        //Tries to stop the thread excepting an error.
         try {
-            //Kills the Thread
+            //Kills the Thread.
             thread.join();
-            //Sets boolean running false
+            //Sets boolean running false.
             running = false;
-            //Catches Exceptions before they will effect the process.
+            //Catches Exceptions before it will effect the process.
         } catch (Exception e) {
+            //Prints the error out.
             e.printStackTrace();
         }
     }
 
-    //Game Loop which creates the refresh rate, some complex shit.
+    /*
+     * Game Loop which creates the refresh rate and fps counter, some complex shit.
+     * Not going to explain it in detail.
+     */
     public void run() {
         this.requestFocus();
         long lastTime = System.nanoTime();
@@ -306,15 +421,25 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-    //One tick controlled and defined by the run methode
+
+    /*
+     * One tick controlled and defined by the run methode.
+     * Add here the classes which tick methods you want to use.
+     */
     private void tick() {
-        //Calls the tick Methode of each Class that has one.
         handler.tick();
         hud.tick();
     }
 
-    //Renders all Objects out as Graphics so that they are visible
+
+    // ---------------------------------------- Initialising Methods ---------------------------------------- //
+
+
+    /*
+     * Renders all Objects out as Graphics so that they are visible.
+     */
     private void render() {
+        //Is a buffer that will store the drawn graphics as long as the JFrame runs.
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
             this.createBufferStrategy(3);

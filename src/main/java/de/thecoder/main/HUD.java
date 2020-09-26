@@ -13,16 +13,32 @@ public class HUD {
     //Is the message String for the second player.
     public static String messageTwo;
 
+
+// ---------------------------------------- Initialising Methods ---------------------------------------- //
+
+
+    /* setMessageOne is a setter methode.
+     * The Methode sets the message for player ones Display
+     * @param message            Is a string that should contain the message to display
+     */
     public static void setMessageOne(String message) {
         HUD.messageOne = message;
     }
 
+
+    // ---------------------------------------- Setter Methods ---------------------------------------- //
+
+    /* setMessageTwo is a setter methode.
+     * The Methode sets the message for player twos Display
+     * @param message            Is a string that should contain the message to display
+     */
     public static void setMessageTwo(String message) {
         HUD.messageTwo = message;
     }
 
-// ---------------------------------------- Initialising Methods ---------------------------------------- //
-
+    /*
+     *The methode tick called every tick the tick is defined in Game.run().
+     */
     public void tick() {
         if (messageOne == null)
             messageOne = " ";
@@ -30,6 +46,11 @@ public class HUD {
             messageTwo = " ";
     }
 
+    // ---------------------------------------- Initialising Methods ---------------------------------------- //
+
+    /*
+     *The methode render is called every run the run is defined in Game.run().
+     */
     public void render(Graphics g) {
         g.setColor(Color.GRAY);
         g.fillRect(15, 15, 200, 32);

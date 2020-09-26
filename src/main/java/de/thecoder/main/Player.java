@@ -63,8 +63,6 @@ public class Player extends GameObject {
 
         //shipSize is the size of the ship based on the shipType.
         int shipSize = Game.shipTypeToSize(shipType);
-        //shipID is the ID assigned in the ID class based on the shipType.
-        ID shipID = Game.shipTypeToID(shipType);
 
         //If statement will check the rotation to set the ship right.
         if (rotation == 0) {
@@ -80,7 +78,7 @@ public class Player extends GameObject {
                         //Writes the shipType int to the array at given cords the i is the ship length so that it is variable.
                         Game.shipPosition[arrayX + i][arrayY][field] = shipType;
                         //Adds the ship to the handler so that it will be rendered.
-                        handler.addObject(Game.shipTypeToObject(shipType, arrayX, arrayY, field, rotation, handler));
+                        handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
                     } else {
                         //If the ship position is not suitable the ERROR will be printed.
                         System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 0");
@@ -100,7 +98,7 @@ public class Player extends GameObject {
                 for (int i = 0; i <= shipSize; i++) {
                     if (arrayX <= Game.shipPosition.length && arrayY + i <= Game.shipPosition.length) {
                         Game.shipPosition[arrayX][arrayY + i][field] = shipType;
-                        handler.addObject(Game.shipTypeToObject(shipType, arrayX, arrayY, field, rotation, handler));
+                        handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
                     } else {
                         System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 90");
                         System.exit(1);
@@ -267,7 +265,7 @@ public class Player extends GameObject {
                         shipStatus.add(getShipCondition(arrayX, arrayY + i, field));
 
                     //Equals code above only the values and the direction has changed.
-                    if (arrayX < Game.shipPosition.length && arrayY - j < Game.shipPosition.length && checkIfShip(arrayX, arrayY - j, field))
+                    if (arrayX < Game.shipPosition.length && arrayY - j < Game.shipPosition.length && arrayY - j > 0 && checkIfShip(arrayX, arrayY - j, field))
                         shipStatus.add(getShipCondition(arrayX, arrayY - j, field));
                 }
                 //If statement will validate if the ship is placed with the rotation 0 degrees.
@@ -277,15 +275,15 @@ public class Player extends GameObject {
                         //Adds the ship condition to the ArrayList
                         shipStatus.add(getShipCondition(arrayX + i, arrayY, field));
                     //Equals code above only the values and the direction has changed.
-                    if (arrayX - j < Game.shipPosition.length && arrayY < Game.shipPosition.length && checkIfShip(arrayX - j, arrayY, field))
+                    if (arrayX - j < Game.shipPosition.length && arrayY < Game.shipPosition.length && arrayX - j > 0 && checkIfShip(arrayX - j, arrayY, field))
                         shipStatus.add(getShipCondition(arrayX - j, arrayY, field));
                 }
             }
         }
-        //For loop will loop until i is bigger than the size of the array list.
-        for (int i = 0; i < shipStatus.size(); i++) {
+        //For each loop will loop until i is bigger than the size of the array list.
+        for (Integer status : shipStatus) {
             //If statement uses i to access the array list and will check if all parts of a ship are destroyed. This means all parts are shipType multiplied by 11. (See GameDoc)
-            if (shipStatus.get(i) == getShipTypeInArray(arrayX, arrayY, field) * 11)
+            if (status == getShipTypeInArray(arrayX, arrayY, field) * 11)
                 //If the ship is destroyed increase the counter
                 counter++;
         }

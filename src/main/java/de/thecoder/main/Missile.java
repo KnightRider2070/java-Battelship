@@ -28,7 +28,7 @@ public class Missile extends GameObject {
     public Missile(int pixelX, int pixelY, ID id, Handler handler) {
         //Is the super constructed defined in the GameObject class.
         super(pixelX, pixelY, id);
-        //Assigns the handler from the Game class to the handler in the Player class.
+        //Assigns the handler from the Game class to the handler in the Missile class.
         this.handler = handler;
     }
 
@@ -59,6 +59,6 @@ public class Missile extends GameObject {
      */
     public void render(Graphics g) {
         g.setColor(Color.red);
-        g.fillRect(x, y, 25, 25);
+        g.fillRect(pixelX, pixelY, 25, 25);
     }
 }

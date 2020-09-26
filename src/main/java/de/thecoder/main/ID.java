@@ -2,7 +2,6 @@ package de.thecoder.main;
 
 public enum ID {
 
-
     Carrier(),
     Battleship(),
     Cruiser(),
