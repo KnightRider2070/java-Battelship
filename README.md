@@ -24,4 +24,5 @@ Pull requests are welcome. For changes, please open an issue first to discuss wh
 
 ### Download Versions
 **Pre Release**
+<br>
 ![Download latest Pre Release](https://img.shields.io/github/downloads-pre/KnightRider2070/java-Battelship/latest/total?style=for-the-badge)
