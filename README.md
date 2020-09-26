@@ -30,6 +30,9 @@ The Game Documeantion also called GameDoc, if you want to undestand the code or 
 ### Size
 ![Size og the repo Image](https://img.shields.io/github/repo-size/KnightRider2070/java-Battelship?style=for-the-badge)
 
+### Version
+![Latest Repo Version](https://img.shields.io/github/v/tag/KnightRider2070/java-Battelship?style=for-the-badge)
+
 ### Download Versions
 **Pre Release**
 <br>
