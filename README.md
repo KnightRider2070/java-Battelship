@@ -20,6 +20,11 @@ Pull requests are welcome. For changes, please open an issue first to discuss wh
 - [ ] Creating methode to allow player to create ship with mouse on startup.
 - [ ] Creating methode to change players after startup.
 
+## Game Documentation
+The Game Documeantion also called GameDoc, if you want to undestand the code or how the game works check the wiki out.
+<br>
+### [Game Documentation](https://github.com/KnightRider2070/java-Battelship/wiki/Home)
+
 ## Download
 
 ### Size
