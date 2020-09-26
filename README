@@ -12,18 +12,4 @@ Main Class: Game
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-GAME DOCUMENTATION
-
-
-@param pixelX         Is a integer in pixel which should contain the X axis cord.
-@param pixelY         Is a integer in pixel which should contain the Y axis cord.
-@param arrayX           Is an integer in array value which should contain the X axis cord.
-@param arrayY           Is an integer in array value which should contain the Y axis cord.
-@param field            Is an integer which should be 0(Player One) or 1(Player Two) is the layer with ship cords.
-
-@param shipType         Is an integer which should be 1/2/3/4/5 for each ship Type. (See GameDoc)
-@param id             Is the id that is assigned to the Player contained int the ID.java file.
-@param handler        Is the handler that is assigned it should be the handler that is initialised in the Game class.
-@param hud            Is the hud that is assigned it should be the hud that is initialised int the Game class.
-
-https://img.shields.io/github/repo-size/KnightRider2070/java-Battelship?style=for-the-badge
+![Size og the repo Image](https://img.shields.io/github/repo-size/KnightRider2070/java-Battelship?style=for-the-badge)
