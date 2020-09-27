@@ -32,9 +32,12 @@ public class Game extends Canvas implements Runnable {
     //Assigns the boolean running the value false, cuz it's not running.
     private boolean running = false;
 
-
-    // ---------------------------------------- Initialising Methods ---------------------------------------- //
-
+    public static String messageInfo;
+    public boolean startup = true;
+    public boolean startupInputX;
+    public boolean startupInputY;
+    public int[] keyBoardInput = new int[2];
+    public STATE gameState = STATE.Startup;
 
     //The Game logic and object initialisation
     public Game() {
@@ -48,14 +51,22 @@ public class Game extends Canvas implements Runnable {
         //Creating listener for Key input
         this.addKeyListener(new KeyInput(handler));
         //Creating listener for Mouse input
-        this.addMouseListener(new MouseInput(handler, player));
+        this.addMouseListener(new MouseInput(handler, this, player));
 
         //Creating the Window with the game in it.
         new Window(WIDTH, HEIGHT, "Battelship", this);
 
-        //test
-        player.setShip(1, 5, 0, 2, 0);
-        player.setShip(6, 3, 0, 1, 90);
+    }
+
+    // ---------------------------------------- Initialising Methods ---------------------------------------- //
+
+    /*
+     * setShipsAliveOne is a setter method.
+     * The Methode will set the ships alive value for player one.
+     * @param shipsAliveOne          Is an integer for player one how many ships still exist.
+     */
+    public void setShipsAliveOne(int shipsAliveOne) {
+        Game.shipsAliveOne = clamp(shipsAliveOne, 0, 5);
     }
 
 
@@ -313,6 +324,10 @@ public class Game extends Canvas implements Runnable {
 
     // ---------------------------------------- Setter Methods ---------------------------------------- //
 
+    public void setMessageInfo(String messageInfo) {
+        Game.messageInfo = messageInfo;
+    }
+
     /*
      * setShipsAliveTwo is a setter method.
      * The Methode will set the ships alive value for player two.
@@ -323,24 +338,24 @@ public class Game extends Canvas implements Runnable {
     }
 
     /*
+     * One tick controlled and defined by the run methode.
+     * Add here the classes which tick methods you want to use.
+     */
+    private void tick() {
+        handler.tick();
+        hud.tick();
+
+    }
+
+    // ---------------------------------------- Getter Methods ---------------------------------------- //
+
+    /*
      * getShipsAliveOne is a getter method.
      * The Methode will get the ships alive value for player one.
      * @param return          Is an integer for player one how many ships still exist.
      */
     public int getShipsAliveOne() {
         return Game.shipsAliveOne;
-    }
-
-
-    // ---------------------------------------- Getter Methods ---------------------------------------- //
-
-    /*
-     * setShipsAliveOne is a setter method.
-     * The Methode will set the ships alive value for player one.
-     * @param shipsAliveOne          Is an integer for player one how many ships still exist.
-     */
-    public void setShipsAliveOne(int shipsAliveOne) {
-        Game.shipsAliveOne = clamp(shipsAliveOne, 0, 5);
     }
 
     /*
@@ -421,20 +436,6 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-
-    /*
-     * One tick controlled and defined by the run methode.
-     * Add here the classes which tick methods you want to use.
-     */
-    private void tick() {
-        handler.tick();
-        hud.tick();
-    }
-
-
-    // ---------------------------------------- Initialising Methods ---------------------------------------- //
-
-
     /*
      * Renders all Objects out as Graphics so that they are visible.
      */
@@ -453,6 +454,51 @@ public class Game extends Canvas implements Runnable {
         //Where to start painting black
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
+        if (gameState == STATE.Startup) {
+            g.setColor(Color.ORANGE);
+            g.drawRect(600, 95, 210, 30);
+            Font font = new Font("Ariel", Font.PLAIN, 25);
+            g.setFont(font);
+            g.setColor(Color.white);
+            g.drawString("Setup Input", 640, 120);
+
+            Font font2 = new Font("Ariel", Font.PLAIN, 50);
+            g.setFont(font2);
+            //First Line
+            g.setColor(Color.orange);
+            g.drawRect(600, 150, 50, 50);
+            g.drawRect(680, 150, 50, 50);
+            g.drawRect(760, 150, 50, 50);
+            g.setColor(Color.white);
+            g.drawString("1", 610, 195);
+            g.drawString("2", 690, 195);
+            g.drawString("3", 770, 195);
+            //Second Line
+            g.setColor(Color.orange);
+            g.drawRect(600, 220, 50, 50);
+            g.drawRect(680, 220, 50, 50);
+            g.drawRect(760, 220, 50, 50);
+            g.setColor(Color.white);
+            g.drawString("4", 610, 265);
+            g.drawString("5", 690, 265);
+            g.drawString("6", 770, 265);
+            //Third Line
+            g.setColor(Color.orange);
+            g.drawRect(600, 290, 50, 50);
+            g.drawRect(680, 290, 50, 50);
+            g.drawRect(760, 290, 50, 50);
+            g.setColor(Color.white);
+            g.drawString("7", 610, 335);
+            g.drawString("8", 690, 335);
+            g.drawString("9", 770, 335);
+            //Fourth Line
+            g.setColor(Color.ORANGE);
+            g.drawRect(600, 360, 95, 50);
+            g.drawRect(715, 360, 95, 50);
+            g.setColor(Color.white);
+            g.drawString("0", 635, 405);
+            g.drawString("90", 735, 405);
+        }
         //First Field
         //Width 500px starts at 0px ends at 500px
         for (int lx = 0; lx < 500; lx += 50) {
@@ -483,6 +529,15 @@ public class Game extends Canvas implements Runnable {
         //Shows the Objects and field and hides the simple Graphics.
         g.dispose();
         bs.show();
+    }
+
+
+    // ---------------------------------------- Initialising Methods ---------------------------------------- //
+
+
+    public enum STATE {
+        Startup,
+        Game,
     }
 
 }

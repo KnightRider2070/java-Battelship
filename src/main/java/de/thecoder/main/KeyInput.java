@@ -35,6 +35,7 @@ public class KeyInput extends KeyAdapter {
         int key = e.getKeyCode();
         //If statement will check if the ESC button is pressed if so it will exit the program.
         if (key == KeyEvent.VK_ESCAPE) System.exit(1);
+
     }
 }
 

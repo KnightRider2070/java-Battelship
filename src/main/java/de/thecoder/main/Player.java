@@ -15,6 +15,8 @@ public class Player extends GameObject {
     //HUD reference
     HUD hud;
 
+    public static int player = 1;
+
 
     // --------------------------------- Initialising Methods --------------------------- //
 
@@ -116,7 +118,6 @@ public class Player extends GameObject {
 
 
     // ---------------------------------------- Logic Methods ---------------------------------------- //
-
 
     /*
      * theAttackOrder is a logic methode.
@@ -266,6 +267,7 @@ public class Player extends GameObject {
 
                     //Equals code above only the values and the direction has changed.
                     if (arrayX < Game.shipPosition.length && arrayY - j < Game.shipPosition.length && arrayY - j > 0 && checkIfShip(arrayX, arrayY - j, field))
+
                         shipStatus.add(getShipCondition(arrayX, arrayY - j, field));
                 }
                 //If statement will validate if the ship is placed with the rotation 0 degrees.
