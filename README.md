@@ -2,6 +2,9 @@
 
 Battelship is a game that should be a simple Battleship game that has the possibility to be extended much further that it is.
 
+## Status 
+![Under Construction](https://media.giphy.com/media/kfR5iyQgmq7PoiFTAf/giphy.gif)
+
 ## Installation
 
 Use your favourite IDE to start the project. 
@@ -19,6 +22,10 @@ Pull requests are welcome. For changes, please open an issue first to discuss wh
 - [x] Creating the basic logic.
 - [ ] Creating methode to allow player to create ship with mouse on startup.
 - [ ] Creating methode to change players after startup.
+- [ ] Creating a game menu.
+- [ ] Creating a rule section.
+- [ ] Creating a stats save system.
+- [ ] Adding Computer enemey.
 
 ## Game Documentation
 The Game Documeantion also called GameDoc, if you want to undestand the code or how the game works check the wiki out.
