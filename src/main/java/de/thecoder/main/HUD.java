@@ -9,13 +9,14 @@ public class HUD {
 // ---------------------------------------- Global Variables ---------------------------------------- //
 
     //Is the message String for the first player.
-    public static String messageOne;
+    private static String messageOne;
     //Is the message String for the second player.
-    public static String messageTwo;
+    private static String messageTwo;
+    //Is the message String for all players during startup.
+    private static String messageAll;
 
 
 // ---------------------------------------- Initialising Methods ---------------------------------------- //
-
 
     /* setMessageOne is a setter methode.
      * The Methode sets the message for player ones Display
@@ -36,6 +37,14 @@ public class HUD {
         HUD.messageTwo = message;
     }
 
+    /* setMessageAll is a setter methode.
+     * The Methode sets the message for all players during startup.
+     * @param message            Is a string that should contain the message to display
+     */
+    public static void setMessageAll(String message) {
+        HUD.messageAll = message;
+    }
+
     /*
      *The methode tick called every tick the tick is defined in Game.run().
      */
@@ -44,7 +53,10 @@ public class HUD {
             messageOne = " ";
         else if (messageTwo == null)
             messageTwo = " ";
+        else if (messageAll == null)
+            messageAll = " ";
     }
+
 
     // ---------------------------------------- Initialising Methods ---------------------------------------- //
 
@@ -70,12 +82,19 @@ public class HUD {
         g.fillRect(15, 630, 330, 32);
         g.setFont(font);
         g.setColor(Color.BLACK);
-        g.drawString("Message:" + messageOne, 15, 655);
+        g.drawString("Message: " + messageOne, 15, 655);
 
         g.setColor(Color.GREEN);
         g.fillRect(1050, 630, 330, 32);
         g.setFont(font);
         g.setColor(Color.BLACK);
-        g.drawString("Message:" + messageTwo, 1050, 655);
+        g.drawString("Message: " + messageTwo, 1050, 655);
+
+        g.setColor(Color.ORANGE);
+        g.fillRect(530, 430, 370, 40);
+        g.setFont(font);
+        g.setColor(Color.BLACK);
+        g.drawString("Info: " + HUD.messageAll, 550, 460);
+
     }
 }

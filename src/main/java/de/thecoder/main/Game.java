@@ -32,10 +32,7 @@ public class Game extends Canvas implements Runnable {
     //Assigns the boolean running the value false, cuz it's not running.
     private boolean running = false;
 
-    public static String messageInfo;
     public boolean startup = true;
-    public boolean startupInputX;
-    public boolean startupInputY;
     public int[] keyBoardInput = new int[2];
     public STATE gameState = STATE.Startup;
 
@@ -324,9 +321,6 @@ public class Game extends Canvas implements Runnable {
 
     // ---------------------------------------- Setter Methods ---------------------------------------- //
 
-    public void setMessageInfo(String messageInfo) {
-        Game.messageInfo = messageInfo;
-    }
 
     /*
      * setShipsAliveTwo is a setter method.

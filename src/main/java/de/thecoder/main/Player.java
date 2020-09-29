@@ -66,54 +66,48 @@ public class Player extends GameObject {
         //shipSize is the size of the ship based on the shipType.
         int shipSize = Game.shipTypeToSize(shipType);
 
-        //If statement will check the rotation to set the ship right.
-        if (rotation == 0) {
-            //If statement  will validate if the cords are in the array. The shipSize is added to the arrayX to check if the ship is in bounds of the array.
-            if (arrayX + shipSize <= Game.shipPosition.length && arrayY <= Game.shipPosition.length) {
-                /*
-                 *For loop to loop through the positions for the ship. The loop has the break statement which depends on the shipSize.
-                 * @param i          Will be used as ship length which increases every loop process.
-                 */
-                for (int i = 0; i < shipSize; i++) {
-                    //If statement will check if the for loop integers are in bounds of the array. Not necessary it's for controlling.
-                    if (arrayX + i <= Game.shipPosition.length && arrayY <= Game.shipPosition.length) {
-                        //Writes the shipType int to the array at given cords the i is the ship length so that it is variable.
-                        Game.shipPosition[arrayX + i][arrayY][field] = shipType;
-                        //Adds the ship to the handler so that it will be rendered.
-                        handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
-                    } else {
-                        //If the ship position is not suitable the ERROR will be printed.
-                        System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 0");
-                        //Exits
-                        System.exit(1);
+        if (Game.shipPosition[arrayX][arrayY][field] == 0)
+            //If statement will check the rotation to set the ship right.
+            if (rotation == 0) {
+                //If statement  will validate if the cords are in the array. The shipSize is added to the arrayX to check if the ship is in bounds of the array.
+                if (arrayX + shipSize <= Game.shipPosition.length && arrayY <= Game.shipPosition.length) {
+                    /*
+                     *For loop to loop through the positions for the ship. The loop has the break statement which depends on the shipSize.
+                     * @param i          Will be used as ship length which increases every loop process.
+                     */
+                    for (int i = 0; i < shipSize; i++) {
+                        //If statement will check if the for loop integers are in bounds of the array. Not necessary it's for controlling.
+                        if (arrayX + i <= Game.shipPosition.length && arrayY <= Game.shipPosition.length) {
+                            //Writes the shipType int to the array at given cords the i is the ship length so that it is variable.
+                            Game.shipPosition[arrayX + i][arrayY][field] = shipType;
+                            //Adds the ship to the handler so that it will be rendered.
+                            handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
+                        } else {
+                            //If the ship position is not suitable the ERROR will be printed.
+                            System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 0");
+                        }
                     }
+                } else {
+                    //If the ship position is not suitable the ERROR will be printed.
+                    System.out.println("ERROR: Ship is out of the field. Methode: setShip Rotation: 0");
+                }
+                //Equals code above only the values and the direction has changed.
+            } else if (rotation == 90) {
+                if (arrayX <= Game.shipPosition.length && arrayY + shipSize <= Game.shipPosition.length) {
+                    for (int i = 0; i <= shipSize; i++) {
+                        if (arrayX <= Game.shipPosition.length && arrayY + i <= Game.shipPosition.length) {
+                            Game.shipPosition[arrayX][arrayY + i][field] = shipType;
+                            handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
+                        } else {
+                            System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 90");
+                        }
+                    }
+                } else {
+                    System.out.println("ERROR: Ship is out of the field. Methode: setShip Rotation: 90");
                 }
             } else {
-                //If the ship position is not suitable the ERROR will be printed.
-                System.out.println("ERROR: Ship is out of the field. Methode: setShip Rotation: 0");
-                //Exits
-                System.exit(1);
+                System.out.println("ERROR: Entered wrong rotation. Methode: setShip");
             }
-            //Equals code above only the values and the direction has changed.
-        } else if (rotation == 90) {
-            if (arrayX <= Game.shipPosition.length && arrayY + shipSize <= Game.shipPosition.length) {
-                for (int i = 0; i <= shipSize; i++) {
-                    if (arrayX <= Game.shipPosition.length && arrayY + i <= Game.shipPosition.length) {
-                        Game.shipPosition[arrayX][arrayY + i][field] = shipType;
-                        handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
-                    } else {
-                        System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 90");
-                        System.exit(1);
-                    }
-                }
-            } else {
-                System.out.println("ERROR: Ship is out of the field. Methode: setShip Rotation: 90");
-                System.exit(1);
-            }
-        } else {
-            System.out.println("ERROR: Entered wrong rotation. Methode: setShip");
-            System.exit(1);
-        }
     }
 
 
