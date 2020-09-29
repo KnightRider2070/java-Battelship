@@ -71,7 +71,7 @@ public class MouseInput extends MouseAdapter {
         if (shipType != 5) {
             //Adds shipType plus one.
             shipType++;
-        } else if (shipsSetOne > 4) {
+        } else if (shipsSetOne > 4 && shipsSetTwo == 0) {
             shipType = 1;
         }
 
