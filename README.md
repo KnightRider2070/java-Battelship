@@ -20,7 +20,7 @@ Pull requests are welcome. For changes, please open an issue first to discuss wh
 
 ## In Progress (TODO)
 - [x] Creating the basic logic.
-- [ ] Creating methode to allow player to create ship with mouse on startup.
+- [x] Creating methode to allow player to create ship with mouse on startup.
 - [ ] Creating methode to change players after startup.
 - [ ] Creating a game menu.
 - [ ] Creating a rule section.
