@@ -52,7 +52,6 @@ public class Game extends Canvas implements Runnable {
 
         //Creating the Window with the game in it.
         new Window(WIDTH, HEIGHT, "Battelship", this);
-
     }
 
     // ---------------------------------------- Initialising Methods ---------------------------------------- //
@@ -150,8 +149,6 @@ public class Game extends Canvas implements Runnable {
             //When you the pixel cords are out of boundaries it will causes an error message and a exit.
         } else {
             System.out.println("Error when converting pixels to cords! Not in the field.");
-            //Program closes
-            System.exit(1);
         }
         return null;
     }
@@ -167,6 +164,7 @@ public class Game extends Canvas implements Runnable {
     public static int[] cordsToPixels(int arrayX, int arrayY, int field) {
         //tempXY is an array which contains the return values.
         int[] tempXY = new int[2];
+
         //If statement will check which field cords should be converted.
         if (field == 0) {
             //tempXY gets values assigned. Those are calculated multiplied by 50 because one field is 50 pixel big. Clamp methode used that the value can't exceed max and min.
@@ -338,7 +336,6 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         handler.tick();
         hud.tick();
-
     }
 
     // ---------------------------------------- Getter Methods ---------------------------------------- //
@@ -483,15 +480,20 @@ public class Game extends Canvas implements Runnable {
             g.drawRect(760, 290, 50, 50);
             g.setColor(Color.white);
             g.drawString("7", 610, 335);
-            g.drawString("8", 690, 335);
+            g.drawString("8", 670, 335);
             g.drawString("9", 770, 335);
             //Fourth Line
             g.setColor(Color.ORANGE);
-            g.drawRect(600, 360, 95, 50);
-            g.drawRect(715, 360, 95, 50);
+            g.drawRect(600, 360, 210, 50);
             g.setColor(Color.white);
-            g.drawString("0", 635, 405);
-            g.drawString("90", 735, 405);
+            g.drawString("10", 675, 405);
+            //Fifth Line
+            g.setColor(Color.ORANGE);
+            g.drawRect(600, 430, 95, 50);
+            g.drawRect(715, 430, 95, 50);
+            g.setColor(Color.white);
+            g.drawString("0", 635, 475);
+            g.drawString("90", 735, 475);
         }
         //First Field
         //Width 500px starts at 0px ends at 500px
@@ -524,7 +526,6 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-
 
     // ---------------------------------------- Initialising Methods ---------------------------------------- //
 

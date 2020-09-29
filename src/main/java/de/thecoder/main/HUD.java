@@ -90,11 +90,11 @@ public class HUD {
         g.setColor(Color.BLACK);
         g.drawString("Message: " + messageTwo, 1050, 655);
 
-        g.setColor(Color.ORANGE);
+     /*   g.setColor(Color.ORANGE);
         g.fillRect(530, 430, 370, 40);
         g.setFont(font);
         g.setColor(Color.BLACK);
-        g.drawString("Info: " + HUD.messageAll, 550, 460);
+        g.drawString("Info: " + HUD.messageAll, 550, 460);*/
 
     }
 }

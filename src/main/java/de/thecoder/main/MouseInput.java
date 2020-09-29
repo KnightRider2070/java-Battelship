@@ -20,8 +20,6 @@ public class MouseInput extends MouseAdapter {
     public int arrayY;
     public int field = 0;
     public int rotation;
-    int shipsSetOne = 0;
-    int shipsSetTwo = 0;
 
 
     // ---------------------------------------- Initialising Methods ---------------------------------------- //
@@ -53,51 +51,10 @@ public class MouseInput extends MouseAdapter {
      * @param width             Is an integer in pixel which should be the width of the field to be checked.
      * @param height            Is an integer in pixel which should be the height of the field to be checked.
      */
-
     private boolean mouseOver(int mouseX, int mouseY, int pixelX, int pixelY, int width, int height) {
         if (mouseX > pixelX && mouseX < pixelX + width) {
             return mouseY > pixelY && mouseY < pixelY + height;
         } else return false;
-    }
-
-    /*
-     * startup is a logic methode.
-     * The Methode contains the actions that should been taken to create a ship.
-     * @param arrayX             Is an integer in array value which should contain the X axis cord.
-     * @param arrayY             Is an integer in array value which should contain the Y axis cord.
-     */
-    public void startup(int arrayX, int arrayY) {
-
-        if (shipType != 5) {
-            //Adds shipType plus one.
-            shipType++;
-        } else if (shipsSetOne > 4 && shipsSetTwo == 0) {
-            shipType = 1;
-        }
-
-        //If statement will check if rotation is one this means 0.
-        if (rotation == 1)
-            //Rotation -1
-            rotation--;
-        if (shipsSetOne < 4) {
-            shipsSetOne++;
-            //Creates a ship.
-            player.setShip(arrayX - 1, arrayY - 1, 0, shipType, rotation);
-
-        } else if (shipsSetTwo < 5) {
-            shipsSetTwo++;
-            //Creates a ship.
-            player.setShip(arrayX - 1, arrayY - 1, 1, shipType, rotation);
-        } else if (shipsSetTwo == 5 && shipsSetOne == 5) {
-            game.startup = false;
-            game.gameState = Game.STATE.Game;
-        }
-        //Sets the cords to 0 to set them again.s
-        this.arrayX = 0;
-        this.arrayY = 0;
-        rotation = 0;
-
-
     }
 
     /*
@@ -111,7 +68,6 @@ public class MouseInput extends MouseAdapter {
         int mouseX = e.getX();
         //Assigns mouseY the position value from the clicked button Y axis.
         int mouseY = e.getY();
-        int field = 0;
 
         //If statement will check if the game is in startup mode.
         if (game.gameState == Game.STATE.Startup) {
@@ -120,16 +76,24 @@ public class MouseInput extends MouseAdapter {
             if (mouseOver(mouseX, mouseY, 600, 150, 50, 50)) {
                 //If statement will check if the X cords are empty.
                 if (arrayX == 0) {                    //When Empty X Cords will write into them.
-                    arrayX = 1;
+                    arrayX = 0;
                     HUD.setMessageAll("X set.");
                 }
                 //If statement will check if the Y cords are empty.
                 else if (arrayY == 0) {
                     //When empty Y Cords will write into them.
-                    arrayY = 1;
+                    arrayY = 0;
                     HUD.setMessageAll("Y set.");
                 }
             } else if (mouseOver(mouseX, mouseY, 680, 150, 50, 50)) {
+                if (arrayX == 0) {
+                    arrayX = 1;
+                    HUD.setMessageAll("X set.");
+                } else if (arrayY == 0) {
+                    arrayY = 1;
+                    HUD.setMessageAll("Y set.");
+                }
+            } else if (mouseOver(mouseX, mouseY, 760, 150, 50, 50)) {
                 if (arrayX == 0) {
                     arrayX = 2;
                     HUD.setMessageAll("X set.");
@@ -137,7 +101,7 @@ public class MouseInput extends MouseAdapter {
                     arrayY = 2;
                     HUD.setMessageAll("Y set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 760, 150, 50, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 600, 220, 50, 50)) {
                 if (arrayX == 0) {
                     arrayX = 3;
                     HUD.setMessageAll("X set.");
@@ -145,7 +109,7 @@ public class MouseInput extends MouseAdapter {
                     arrayY = 3;
                     HUD.setMessageAll("Y set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 600, 220, 50, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 680, 220, 50, 50)) {
                 if (arrayX == 0) {
                     arrayX = 4;
                     HUD.setMessageAll("X set.");
@@ -153,7 +117,7 @@ public class MouseInput extends MouseAdapter {
                     arrayY = 4;
                     HUD.setMessageAll("Y set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 680, 220, 50, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 760, 220, 50, 50)) {
                 if (arrayX == 0) {
                     arrayX = 5;
                     HUD.setMessageAll("X set.");
@@ -161,7 +125,7 @@ public class MouseInput extends MouseAdapter {
                     arrayY = 5;
                     HUD.setMessageAll("Y set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 760, 220, 50, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 600, 290, 50, 50)) {
                 if (arrayX == 0) {
                     arrayX = 6;
                     HUD.setMessageAll("X set.");
@@ -169,7 +133,7 @@ public class MouseInput extends MouseAdapter {
                     arrayY = 6;
                     HUD.setMessageAll("Y set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 600, 290, 50, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 680, 290, 50, 50)) {
                 if (arrayX == 0) {
                     arrayX = 7;
                     HUD.setMessageAll("X set.");
@@ -177,7 +141,7 @@ public class MouseInput extends MouseAdapter {
                     arrayY = 7;
                     HUD.setMessageAll("Y set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 680, 290, 50, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 760, 290, 50, 50)) {
                 if (arrayX == 0) {
                     arrayX = 8;
                     HUD.setMessageAll("X set.");
@@ -185,7 +149,7 @@ public class MouseInput extends MouseAdapter {
                     arrayY = 8;
                     HUD.setMessageAll("Y set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 760, 290, 50, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 600, 360, 210, 50)) {
                 if (arrayX == 0) {
                     arrayX = 9;
                     HUD.setMessageAll("X set.");
@@ -193,26 +157,52 @@ public class MouseInput extends MouseAdapter {
                     arrayY = 9;
                     HUD.setMessageAll("Y set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 600, 360, 95, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 600, 430, 95, 50)) {
                 if (rotation == 0) {
                     rotation = 1;
                     HUD.setMessageAll("Rotation set.");
                 }
-            } else if (mouseOver(mouseX, mouseY, 715, 360, 95, 50)) {
+            } else if (mouseOver(mouseX, mouseY, 715, 430, 95, 50)) {
                 if (rotation == 0) {
                     rotation = 90;
                     HUD.setMessageAll("Rotation set.");
                 }
             }
+
             //If statement will check if all required integers are filled.
-            if (arrayX != 0 && arrayY != 0 && rotation != 0)
-                //Starts the startup.
-                startup(arrayX, arrayY);
+            if (arrayX != 0 && arrayY != 0 && rotation != 0) {
+                if (rotation == 1)
+                    rotation = 0;
+
+
+                if (player.setShip(arrayX, arrayY, field, shipType, rotation)) {
+                    HUD.setMessageAll(" ");
+                    rotation = 0;
+                    arrayX = 0;
+                    arrayY = 0;
+                    shipType++;
+                    if (shipType > 5 && field == 0) {
+                        HUD.setMessageAll("Player 2 pls");
+                        shipType = 1;
+                        field = 1;
+                    }
+                } else {
+                    HUD.setMessageAll("Non valid Cords");
+                    rotation = 0;
+                    arrayX = 0;
+                    arrayY = 0;
+                }
+            }
+
+            if (field == 1 && shipType > 5) {
+                game.gameState = Game.STATE.Game;
+            }
         }
 
         //If statement that checks if the pressed button was the left one.
-        if (button == 1 && !game.startup && game.gameState == Game.STATE.Game)
+        if (button == 1 && game.gameState == Game.STATE.Game)
             //Executes a methode from the player class to attack.
             player.theAttackOrder(mouseX, mouseY);
+
     }
 }

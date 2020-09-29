@@ -17,11 +17,10 @@ public class Player extends GameObject {
 
     public static int player = 1;
 
-
     // --------------------------------- Initialising Methods --------------------------- //
 
     /*
-     *The Player constructor which creates a player at a specific position.
+     * The Player constructor which creates a player at a specific position.
      * The parameter handler gets assigned and the parameter hud.
      * @param pixelX         Is a integer in pixel which should contain the X axis cord.
      * @param pixelY         Is a integer in pixel which should contain the Y axis cord.
@@ -39,7 +38,7 @@ public class Player extends GameObject {
     }
 
     /*
-     *The methode tick called every tick the tick is defined in Game.run().
+     * The methode tick called every tick the tick is defined in Game.run().
      * If it should be used it needs to be added to Game.tick().
      */
     public void tick() {
@@ -55,8 +54,11 @@ public class Player extends GameObject {
      * @param field            Is an integer which should be 0(Player One) or 1(Player Two) is the layer with ship cords.
      * @param shipType         Is an integer which should be 1/2/3/4/5 for each ship Type. (See GameDoc)
      * @param rotation         Is an integer which contains the rotation of the ship possible is 0 and 90.
+     * @param return           IS a boolean if the ship is set.
      */
-    public void setShip(int arrayX, int arrayY, int field, int shipType, int rotation) {
+    public boolean setShip(int arrayX, int arrayY, int field, int shipType, int rotation) {
+
+        int counter = 0;
 
         //If statement will validate shipType if it matches the possible values.
         if (!Game.validateShipType(shipType))
@@ -66,48 +68,54 @@ public class Player extends GameObject {
         //shipSize is the size of the ship based on the shipType.
         int shipSize = Game.shipTypeToSize(shipType);
 
-        if (Game.shipPosition[arrayX][arrayY][field] == 0)
-            //If statement will check the rotation to set the ship right.
-            if (rotation == 0) {
-                //If statement  will validate if the cords are in the array. The shipSize is added to the arrayX to check if the ship is in bounds of the array.
-                if (arrayX + shipSize <= Game.shipPosition.length && arrayY <= Game.shipPosition.length) {
-                    /*
-                     *For loop to loop through the positions for the ship. The loop has the break statement which depends on the shipSize.
-                     * @param i          Will be used as ship length which increases every loop process.
-                     */
-                    for (int i = 0; i < shipSize; i++) {
-                        //If statement will check if the for loop integers are in bounds of the array. Not necessary it's for controlling.
-                        if (arrayX + i <= Game.shipPosition.length && arrayY <= Game.shipPosition.length) {
-                            //Writes the shipType int to the array at given cords the i is the ship length so that it is variable.
-                            Game.shipPosition[arrayX + i][arrayY][field] = shipType;
-                            //Adds the ship to the handler so that it will be rendered.
-                            handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
-                        } else {
-                            //If the ship position is not suitable the ERROR will be printed.
-                            System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 0");
-                        }
-                    }
-                } else {
-                    //If the ship position is not suitable the ERROR will be printed.
-                    System.out.println("ERROR: Ship is out of the field. Methode: setShip Rotation: 0");
-                }
-                //Equals code above only the values and the direction has changed.
-            } else if (rotation == 90) {
-                if (arrayX <= Game.shipPosition.length && arrayY + shipSize <= Game.shipPosition.length) {
-                    for (int i = 0; i <= shipSize; i++) {
-                        if (arrayX <= Game.shipPosition.length && arrayY + i <= Game.shipPosition.length) {
-                            Game.shipPosition[arrayX][arrayY + i][field] = shipType;
-                            handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
-                        } else {
-                            System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 90");
-                        }
-                    }
-                } else {
-                    System.out.println("ERROR: Ship is out of the field. Methode: setShip Rotation: 90");
-                }
-            } else {
-                System.out.println("ERROR: Entered wrong rotation. Methode: setShip");
+        if (Game.shipPosition[arrayX][arrayY][field] != 0)
+            return false;
+        //If statement will check the rotation to set the ship right.
+        if (rotation == 0) {
+            /*
+             *For loop to loop through the positions for the ship. The loop has the break statement which depends on the shipSize.
+             * @param i          Will be used as ship length which increases every loop process.
+             */
+            for (int i = 0; i < shipSize; ++i) {
+                if (arrayX + i > Game.shipPosition.length || arrayY > Game.shipPosition.length || Game.shipPosition[arrayX + i][arrayY][field] != 0)
+                    break;
+                counter++;
             }
+            if (counter == shipSize) {
+                for (int i = 0; i < shipSize; ++i) {
+                    Game.shipPosition[arrayX + i][arrayY][field] = shipType;
+                }
+                handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
+                return true;
+            } else {
+                //If the ship position is not suitable the ERROR will be printed.
+                System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 0");
+                return false;
+            }
+        } else if (rotation == 90) {
+
+            /*
+             * For loop to loop through the positions for the ship. The loop has the break statement which depends on the shipSize.
+             * @param i          Will be used as ship length which increases every loop process.
+             */
+            for (int i = 0; i < shipSize; ++i) {
+                if (arrayX > Game.shipPosition.length || arrayY + i > Game.shipPosition.length || Game.shipPosition[arrayX][arrayY + i][field] != 0)
+                    break;
+                counter++;
+            }
+            if (counter == shipSize) {
+                for (int i = 0; i < shipSize; ++i) {
+                    Game.shipPosition[arrayX][arrayY + i][field] = shipType;
+                }
+                handler.addObject(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
+                return true;
+            } else {
+                //If the ship position is not suitable the ERROR will be printed.
+                System.out.println("ERROR: Ship is out of the field. For loop. Methode: setShip Rotation: 90");
+                return false;
+            }
+        }
+        return false;
     }
 
 
@@ -123,6 +131,7 @@ public class Player extends GameObject {
         //arrayCoordinates is an array which contain the converted array cords that are calculated with the raw mouse cords.
         int[] arrayCoordinates = Game.pixelsToCord(rawPixelX, rawPixelY);
         //arrayX is an integer which gets the converted coordinates for the X axis assigned from the array arrayCoordinates.
+        assert arrayCoordinates != null;
         int arrayX = arrayCoordinates[0];
         //arrayY is an integer which gets the converted coordinates for the Y axis assigned from the array arrayCoordinates.
         int arrayY = arrayCoordinates[1];
@@ -153,8 +162,8 @@ public class Player extends GameObject {
      * @param pixelY         Is an integer which are the converted cords at the Y axis from the mouse courser.
      * @param arrayX         Is an integer in array value which should contain the X axis cord.
      * @param arrayY         Is an integer in array value which should contain the Y axis cord.
-     * @param field            Is an integer which should be 0(Player One) or 1(Player Two) is the layer with ship cords.
-     * @param shipType         Is an integer which should be 1/2/3/4/5 for each ship Type. (See GameDoc)
+     * @param field          Is an integer which should be 0(Player One) or 1(Player Two) is the layer with ship cords.
+     * @param shipType       Is an integer which should be 1/2/3/4/5 for each ship Type. (See GameDoc)
      */
     public void attackTheShip(int pixelX, int pixelY, int arrayX, int arrayY, int field, int shipType) {
 
@@ -344,7 +353,7 @@ public class Player extends GameObject {
     // ---------------------------------------- Initialising Methods ---------------------------------------- //
 
     /*
-     *The methode render is called every run the run is defined in Game.run().
+     * The methode render is called every run the run is defined in Game.run().
      * If it should be used it needs to be added to Game.render().
      */
     public void render(Graphics g) {
