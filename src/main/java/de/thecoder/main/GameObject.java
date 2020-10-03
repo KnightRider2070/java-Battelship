@@ -1,144 +1,136 @@
 package de.thecoder.main;
 
-// ---------------------------------------- Imported Libraries ---------------------------------------- //
-
 import java.awt.*;
 
 public abstract class GameObject {
 
-    // ---------------------------------------- Global Variables ---------------------------------------- //
+public int pixelX, pixelY; /*pixelX, pixelY  is a integer in pixel which should contain the X,Y axis cord.*/
+protected ID  id; /*Is the id that is assigned to the Player contained int the ID.java file.*/
+protected int velX, velY; /*velX, velY velocity means how fast object is moving. Needs to be used in tick methode.*/
 
-    //pixelX, pixelY are integers that should contain the position of an GlobalObject.
-    protected int pixelX, pixelY;
-    //id is the ID of an GlobalObject those are maintained in the ID class. (See GameDoc)
-    protected ID id;
-    //velX, velY is the velocity which means how fast an object is moving. Needs to be used in tick methode.
-    protected int velX, velY;
+/**
+ * GameObject is the constructor class for Game objects. It also is the base for all ships.
+ *
+ * @param pixelX Is a integer in pixel which should contain the X axis cord.
+ * @param pixelY Is a integer in pixel which should contain the Y axis cord.
+ * @param id     Is the id that is assigned to the Player contained int the ID.java file.
+ */
+public GameObject(int pixelX, int pixelY, ID id) {
 
-    // ---------------------------------------- Initialising Methods ---------------------------------------- //
+	this.pixelX = pixelX; this.pixelY = pixelY; this.id = id;
+}
 
-    /*
-     * GameObject is the constructor class for Game objects.
-     * @param pixelX         Is a integer in pixel which should contain the X axis cord.
-     * @param pixelY         Is a integer in pixel which should contain the Y axis cord.
-     * @param id             Is the id that is assigned to the Player contained int the ID.java file.
-     */
-    public GameObject(int pixelX, int pixelY, ID id) {
-        //Assigns the pixelX from the constructor to the pixelX parameter from the GameObject class.
-        this.pixelX = pixelX;
-        //Assigns the pixelY from the constructor to the pixelY parameter from the GameObject class.
-        this.pixelY = pixelY;
-        //Assigns the id from the constructor to the id parameter from the GameObject class.
-        this.id = id;
-    }
 
-    // ---------------------------------------- Setter Methods ---------------------------------------- //
+/**
+ * getX is a getter method. The Methode will get the X axis cords.
+ *
+ * @param return Is an integer with the X axis pixel cords.
+ */
+public int getX() {
 
-    /*
-     * getX is a getter method.
-     * The Methode will get the X axis cords.
-     * @param return          Is an integer with the X axis pixel cords.
-     */
-    public int getX() {
-        return pixelX;
-    }
+	return pixelX;
+}
 
-    /*
-     * setX is a setter method.
-     * The Methode will set the X axis cords.
-     * @param pixelX          Is an integer with the X axis pixel cords.
-     */
-    public void setX(int pixelX) {
-        this.pixelX = pixelX;
-    }
+/**
+ * setX is a setter method. The Methode will set the X axis cords.
+ *
+ * @param pixelX Is an integer with the X axis pixel cords.
+ */
+public void setX(int pixelX) {
 
-    /*
-     * getY is a getter method.
-     * The Methode will get the Y axis cords.
-     * @param return          Is an integer with the Y axis pixel cords.
-     */
-    public int getY() {
-        return pixelY;
-    }
+	this.pixelX = pixelX;
+}
 
-    /*
-     * getY is a setter method.
-     * The Methode will set the Y axis cords.
-     * @param pixelY          Is an integer with the Y axis pixel cords.
-     */
-    public void setY(int pixelY) {
-        this.pixelY = pixelY;
-    }
+/**
+ * getY is a getter method. The Methode will get the Y axis cords.
+ *
+ * @param return Is an integer with the Y axis pixel cords.
+ */
+public int getY() {
 
-    /*
-     * getId is a getter method.
-     * The Methode will get the id.
-     * @param return          Is an integer with id.
-     */
-    public ID getId() {
-        return id;
-    }
+	return pixelY;
+}
 
-    // ---------------------------------------- Getter Methods ---------------------------------------- //
+/**
+ * getY is a setter method. The Methode will set the Y axis cords.
+ *
+ * @param pixelY Is an integer with the Y axis pixel cords.
+ */
+public void setY(int pixelY) {
 
-    /*
-     * setId is a setter method.
-     * The Methode will set the id.
-     * @param id          Is an integer with id.
-     */
-    public void setId(ID id) {
-        this.id = id;
-    }
+	this.pixelY = pixelY;
+}
 
-    /*
-     * getVelX is a getter method.
-     * The Methode will get the velX.
-     * @param return          Is an integer with velX the X axis acceleration.
-     */
-    public int getVelX() {
-        return velX;
-    }
+/**
+ * getId is a getter method. The Methode will get the id.
+ *
+ * @param return Is an integer with id.
+ */
+public ID getId() {
 
-    /*
-     * setVelX is a setter method.
-     * The Methode will set the velX.
-     * @param velX          Is an integer with velX the X axis acceleration.
-     */
-    public void setVelX(int velX) {
-        this.velX = velX;
-    }
+	return id;
+}
 
-    /*
-     * setVelY is a getter method.
-     * The Methode will get the velY.
-     * @param return          Is an integer with velX the Y axis acceleration.
-     */
-    public int getVelY() {
-        return velY;
-    }
 
-    /*
-     * setVelY is a setter method.
-     * The Methode will set the velY.
-     * @param velY          Is an integer with velX the Y axis acceleration.
-     */
-    public void setVelY(int velY) {
-        this.velY = velY;
-    }
+/**
+ * setId is a setter method. The Methode will set the id.
+ *
+ * @param id Is an integer with id.
+ */
+public void setId(ID id) {
 
-    // ---------------------------------------- Runner Methods ---------------------------------------- //
+	this.id = id;
+}
 
-    /*
-     *The methode tick called every tick the tick is defined in Game.run().
-     * If it should be used it needs to be added to Game.tick().
-     */
-    public abstract void tick();
+/**
+ * getVelX is a getter method. The Methode will get the velX.
+ *
+ * @param return Is an integer with velX the X axis acceleration.
+ */
+public int getVelX() {
 
-    // ---------------------------------------- Initialising Methods ---------------------------------------- //
+	return velX;
+}
 
-    /*
-     *The methode render is called every run the run is defined in Game.run().
-     */
-    public abstract void render(Graphics g);
+/**
+ * setVelX is a setter method. The Methode will set the velX.
+ *
+ * @param velX Is an integer with velX the X axis acceleration.
+ */
+public void setVelX(int velX) {
+
+	this.velX = velX;
+}
+
+/**
+ * setVelY is a getter method. The Methode will get the velY.
+ *
+ * @param return Is an integer with velX the Y axis acceleration.
+ */
+public int getVelY() {
+
+	return velY;
+}
+
+/**
+ * setVelY is a setter method. The Methode will set the velY.
+ *
+ * @param velY Is an integer with velX the Y axis acceleration.
+ */
+public void setVelY(int velY) {
+
+	this.velY = velY;
+}
+
+/**
+ * The methode tick called every tick the tick is defined in Game.run(). If it should be used it needs to be added to
+ * Game.tick().
+ */
+public abstract void tick();
+
+/**
+ * The methode render is called every run the run is defined in Game.run().
+ */
+public abstract void render(Graphics g);
 
 }

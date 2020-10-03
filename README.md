@@ -3,7 +3,7 @@
 Battelship is a game that should be a simple Battleship game that has the possibility to be extended much further that it is.
 
 ## Status 
-![Under Construction](https://media.giphy.com/media/kfR5iyQgmq7PoiFTAf/giphy.gif)
+![Under Construction](https:/*media.giphy.com/media/kfR5iyQgmq7PoiFTAf/giphy.gif)
 
 ## Installation
 
@@ -30,22 +30,22 @@ Pull requests are welcome. For changes, please open an issue first to discuss wh
 ## Game Documentation
 The Game Documeantion also called GameDoc, if you want to undestand the code or how the game works check the wiki out.
 <br>
-### [Game Documentation](https://github.com/KnightRider2070/java-Battelship/wiki/Home)
+### [Game Documentation](https:/*github.com/KnightRider2070/java-Battelship/wiki/Home)
 
 ## Download
 
 ### Size
-![Size og the repo Image](https://img.shields.io/github/repo-size/KnightRider2070/java-Battelship?style=for-the-badge)
+![Size og the repo Image](https:/*img.shields.io/github/repo-size/KnightRider2070/java-Battelship?style=for-the-badge)
 
 ### Version
-![Latest Repo Version](https://img.shields.io/github/v/tag/KnightRider2070/java-Battelship?style=for-the-badge)
+![Latest Repo Version](https:/*img.shields.io/github/v/tag/KnightRider2070/java-Battelship?style=for-the-badge)
 
 ### Download Versions
 **Pre Release**
 <br>
-![Version latest Pre Release](https://img.shields.io/github/v/release/KnightRider2070/java-Battelship?include_prereleases&style=for-the-badge)
+![Version latest Pre Release](https:/*img.shields.io/github/v/release/KnightRider2070/java-Battelship?include_prereleases&style=for-the-badge)
 <br>
 <br>
 **Release**
 <br>
-![Version latest Release](https://img.shields.io/github/v/release/KnightRider2070/java-Battelship?style=for-the-badge)
+![Version latest Release](https:/*img.shields.io/github/v/release/KnightRider2070/java-Battelship?style=for-the-badge)
