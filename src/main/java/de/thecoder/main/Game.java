@@ -43,10 +43,9 @@ public Game() {
 
 	handler = new Handler(this);   /*Assigns the handler a new Handler.*/
 	hud     = new HUD(); /*Assigns the hud a new Hud.*/
-	/*References the player to a Player.*/
-	Player player = new Player(1, 1, ID.Player, handler, hud, this); /*Adds the player to the game.*/
+	Player player = new Player(1, 1, ID.Player, handler, this); /*Adds the player to the game.*/
 	this.addKeyListener(new KeyInput(this, player)); /*Creating listener for Key input.*/
-	this.addMouseListener(new MouseInput(handler, this, player)); /*Creating listener for Mouse input.*/
+	this.addMouseListener(new MouseInput(this, player)); /*Creating listener for Mouse input.*/
 
 	new Window(WIDTH, HEIGHT, "Battelship", this); /*Creating the Window with the game in it.*/
 }
@@ -117,8 +116,8 @@ public static int[] pixelsToCord(int pixelX, int pixelY) {
 
 		return tempXYF;
 	} else {
-		System.out.println("Error when converting pixels to cords! Not in the field.");
-	} return null;
+		System.out.println("Error when converting pixels to cords! Not in the field."); System.exit(1); return null;
+	}
 }
 
 /**
@@ -135,7 +134,6 @@ public static int[] cordsToPixels(int arrayX, int arrayY, int field) {
 
 	int[] tempXY = new int[2];   /*tempXY array contains x,y pixel for return.*/
 
-
 	if(field == 0) {
 		tempXY[0] = clamp(arrayX * 50, 0, 500); /*Multiplied by 50, cuz field 50 pixel big.*/
 
@@ -146,8 +144,9 @@ public static int[] cordsToPixels(int arrayX, int arrayY, int field) {
 	} else if(field == 1) {
 		tempXY[0] = clamp(arrayX * 50 + 1000, 1000, 1500); tempXY[1] = clamp(arrayY * 50 + 100, 100, 600);
 		return tempXY;
-	} else
-		System.out.println("ERROR: Entered wrong field. Methode: cordsToPixels"); return null;
+	} else {
+		System.out.println("ERROR: Entered wrong field. Methode: cordsToPixels"); System.exit(1); return null;
+	}
 }
 
 /**
@@ -187,7 +186,7 @@ public static GameObject shipTypeToObject(int arrayX, int arrayY, int field, int
 		return new Carrier(pixelX, pixelY, rotation, ID.Carrier); if(shipType == 2)
 		return new Battleship(pixelX, pixelY, rotation, ID.Battleship); if(shipType == 3)
 		return new Cruiser(pixelX, pixelY, rotation, ID.Cruiser); if(shipType == 4)
-		return new Submarine(pixelX, pixelY, rotation, ID.Submarine, handler); if(shipType == 5)
+		return new Submarine(pixelX, pixelY, rotation, ID.Submarine); if(shipType == 5)
 		return new Destroyer(pixelX, pixelY, rotation, ID.Destroyer);
 
 	System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToObject"); return null;

@@ -24,7 +24,7 @@ public GameObject(int pixelX, int pixelY, ID id) {
 /**
  * getX is a getter method. The Methode will get the X axis cords.
  *
- * @param return Is an integer with the X axis pixel cords.
+ * @return Is an integer with the X axis pixel cords.
  */
 public int getX() {
 
@@ -44,7 +44,7 @@ public void setX(int pixelX) {
 /**
  * getY is a getter method. The Methode will get the Y axis cords.
  *
- * @param return Is an integer with the Y axis pixel cords.
+ * @return Is an integer with the Y axis pixel cords.
  */
 public int getY() {
 
@@ -64,7 +64,7 @@ public void setY(int pixelY) {
 /**
  * getId is a getter method. The Methode will get the id.
  *
- * @param return Is an integer with id.
+ * @return Is an integer with id.
  */
 public ID getId() {
 
@@ -85,7 +85,7 @@ public void setId(ID id) {
 /**
  * getVelX is a getter method. The Methode will get the velX.
  *
- * @param return Is an integer with velX the X axis acceleration.
+ * @return Is an integer with velX the X axis acceleration.
  */
 public int getVelX() {
 
@@ -105,7 +105,7 @@ public void setVelX(int velX) {
 /**
  * setVelY is a getter method. The Methode will get the velY.
  *
- * @param return Is an integer with velX the Y axis acceleration.
+ * @return Is an integer with velX the Y axis acceleration.
  */
 public int getVelY() {
 

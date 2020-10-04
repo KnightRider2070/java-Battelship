@@ -114,8 +114,8 @@ public void keyPressed(KeyEvent e) {
 		HUD.setMessageArrayX(arrayX); HUD.setMessageArrayY(arrayY); HUD.setMessageRotation(rotation);
 		HUD.setMessageShipType(shipType);
 
-		if(arrayX != 0 && arrayY != 0 && rotation != 0) { /*If statement check if required integers are filled.*/
-			/*Converts all integers that need to be converted.*/
+		if(arrayX != 0 && arrayY != 0 && rotation != 0) { /*If statement check if required integers are entered.*/
+			/*Changes values that they are usable.*/
 			if(rotation == 1)
 				rotation = 0; arrayX--; arrayY--;
 
