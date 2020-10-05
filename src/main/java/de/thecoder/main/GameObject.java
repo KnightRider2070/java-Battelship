@@ -1,6 +1,6 @@
 package de.thecoder.main;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public abstract class GameObject {
 

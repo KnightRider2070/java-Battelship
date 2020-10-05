@@ -1,8 +1,8 @@
 package de.thecoder.main;
 
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Graphics;
+import java.util.LinkedList;
 
 public class Handler {
 
@@ -97,7 +97,7 @@ public void tick() {
  */
 public void render(Graphics g) {
 
-	if(game.gameState == STATE.GameEnd) {
+	if(Game.gameState == STATE.GameEnd) {
 		for(GameObject tempObject : playerOneObject) {
 			tempObject.render(g);
 		} for(GameObject tempObject : playerTwoObject) {
@@ -107,12 +107,12 @@ public void render(Graphics g) {
 		}
 	}
 
-	if(game.gameState == STATE.GamePlayer1)  /*If statement will check if game state is player ones.*/
+	if(Game.gameState == STATE.GamePlayer1)  /*If statement will check if game state is player ones.*/
 		for(GameObject tempObject : playerOneObject) { /*For each loop loops through the list playerOneObject.*/
 			tempObject.render(g);
 		}
 
-	if(game.gameState == STATE.GamePlayer2)
+	if(Game.gameState == STATE.GamePlayer2)
 		for(GameObject tempObject : playerTwoObject) { /*For each loop loops through the list playerTwoObject.*/
 			tempObject.render(g);
 		}

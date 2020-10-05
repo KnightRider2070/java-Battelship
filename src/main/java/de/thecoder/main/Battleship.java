@@ -1,7 +1,8 @@
 package de.thecoder.main;
 
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Battleship extends GameObject {
 

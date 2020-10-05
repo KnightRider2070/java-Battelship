@@ -1,7 +1,8 @@
 package de.thecoder.main;
 
 
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter {
 
@@ -123,9 +124,9 @@ public void keyPressed(KeyEvent e) {
 			if(player.setShip(arrayX, arrayY, field, shipType, rotation)) {
 				HUD.setMessageAll(" "); rotation = 0; arrayX = 0; arrayY = 0; shipType++;
 				if(shipType > 5 && field == 0) {
-					HUD.setMessageAll("Player 2 pls"); shipType = 1; field = 1; game.gameState = STATE.GamePlayer2;
+					HUD.setMessageAll("Player 2 pls"); shipType = 1; field = 1; Game.gameState = STATE.GamePlayer2;
 				} else if(shipType > 5 && field == 1) {
-					HUD.setMessageAll("Player 1 attack"); Game.STARTUP = false; game.gameState = STATE.GamePlayer1;
+					HUD.setMessageAll("Player 1 attack"); Game.STARTUP = false; Game.gameState = STATE.GamePlayer1;
 				}
 			} else {
 				HUD.setMessageAll("Non valid Cords"); rotation = 0; arrayX = 0; arrayY = 0;

@@ -1,7 +1,9 @@
 package de.thecoder.main;
 
 
-import java.awt.*;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Missile extends GameObject {
 

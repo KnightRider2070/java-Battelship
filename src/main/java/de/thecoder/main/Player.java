@@ -1,9 +1,9 @@
 package de.thecoder.main;
 
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
 
 public class Player extends GameObject {
 
@@ -119,19 +119,19 @@ public boolean setShip(int arrayX, int arrayY, int field, int shipType, int rota
  */
 public void theGameAttackManager(int rawPixelX, int rawPixelY) {
 
-	if(game.gameState == STATE.GamePlayer1) {
+	if(Game.gameState == STATE.GamePlayer1) {
 		/*Executes the methode that contains the attack logic.*/
 		theAttackOrder(rawPixelX, rawPixelY); if(isHit) {/*Checks if attack was hit or miss.*/
 			HUD.setMessageOne("Attack again!");
 		} else {
-			game.gameState = STATE.GamePlayer2;
+			Game.gameState = STATE.GamePlayer2;
 		}
 		/*Equals above but with a different player.*/
-	} else if(game.gameState == STATE.GamePlayer2) {
+	} else if(Game.gameState == STATE.GamePlayer2) {
 		theAttackOrder(rawPixelX, rawPixelY); if(isHit) {
 			HUD.setMessageTwo("Attack again!");
 		} else {
-			game.gameState = STATE.GamePlayer1;
+			Game.gameState = STATE.GamePlayer1;
 		}
 	}
 }
@@ -160,10 +160,10 @@ public void theAttackOrder(int rawPixelX, int rawPixelY) {
 
 	/*Checks if a player won the game.*/
 	if(Game.getShipsAlivePlayerOne() == 0) {
-		game.gameState = STATE.GameEnd; HUD.setMessageAll("GAME ENDED!"); HUD.setMessageOne("LOST :(!");
+		Game.gameState = STATE.GameEnd; HUD.setMessageAll("GAME ENDED!"); HUD.setMessageOne("LOST :(!");
 		HUD.setMessageTwo("WON :)!");
 	} else if(Game.getShipsAlivePlayerTwo() == 0) {
-		game.gameState = STATE.GameEnd; HUD.setMessageAll("GAME ENDED!"); HUD.setMessageOne("WON :)!");
+		Game.gameState = STATE.GameEnd; HUD.setMessageAll("GAME ENDED!"); HUD.setMessageOne("WON :)!");
 		HUD.setMessageTwo("LOST :(!");
 	} else
 		attackTheShip(pixelX, pixelY, arrayX, arrayY, field, shipType);
