@@ -24,7 +24,7 @@ Pull requests are welcome. For changes, please open an issue first to discuss wh
 - [x] Creating methode to allow a player to create a ship with mouse on the startup.
 - [x] Creating methode to change players after the startup.
 - [ ] Creating a game menu.
-- [ ] Creating a rule section.
+- [x] Creating a rule section.
 - [ ] Creating stats save system.
 - [ ] Adding Computer enemy.
 
