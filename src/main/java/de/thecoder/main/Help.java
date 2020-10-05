@@ -45,7 +45,7 @@ private boolean mouseOver(int mouseX, int mouseY, int pixelX, int pixelY, int wi
  */
 public void mouseClicked(MouseEvent e) {
 
-	int button = e.getButton(); int mouseX = e.getX(); int mouseY = e.getY();
+	int mouseX = e.getX(); int mouseY = e.getY(); int button = e.getButton();
 	/*URL that should be opened*/
 	String url = "https://github.com/KnightRider2070/java-Battelship/wiki";
 
@@ -78,8 +78,8 @@ public void render(Graphics g) {
 	Font font3 = new Font("Arial", Font.PLAIN, 19);
 
 	/*The Header*/
-	g.setColor(Color.orange); g.drawRect(475, 50, 600, 50); g.setFont(font);
-	g.drawString("Battelfield Help read wisely", 540, 90); g.setColor(Color.WHITE); g.setFont(font2);
+	g.setColor(Color.orange); g.drawRect(475, 100, 600, 50); g.setFont(font);
+	g.drawString("Battelfield Help read wisely", 540, 140); g.setColor(Color.WHITE); g.setFont(font2);
 	g.setColor(Color.PINK); g.drawString("Weitere Informationen in der Game Doc", 530, 450); g.setColor(Color.red);
 	g.drawString("Hier!", 720, 480);
 	/*The Headline Rules*/
@@ -110,8 +110,6 @@ public void render(Graphics g) {
 	g.drawString("4. Wenn Num eingabe dann Pfeiltasten Rotation setzten.", 410, 665);
 
 	/*Menu Button*/
-	g.setColor(Color.RED); g.drawRect(1200, 600, 200, 50); g.setColor(Color.WHITE); g.setFont(font);
-	g.drawString("MENU", 1240, 640);
 }
 
 }

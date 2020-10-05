@@ -141,9 +141,9 @@ public void mouseClicked(MouseEvent e) {
 			if(player.setShip(arrayX, arrayY, field, shipType, rotation)) {
 				HUD.setMessageAll(" "); rotation = 0; arrayX = 0; arrayY = 0; shipType++;
 				if(shipType > 5 && field == 0) {
-					HUD.setMessageAll("Player 2 pls"); shipType = 1; field = 1; Game.gameState = STATE.GamePlayer2;
+					HUD.setMessageAll("Player 2 pls"); shipType = 1; field = 1; game.gameState = STATE.GamePlayer2;
 				} else if(shipType > 5 && field == 1) {
-					HUD.setMessageAll("Player 1 attack"); Game.STARTUP = false; Game.gameState = STATE.GamePlayer1;
+					HUD.setMessageAll("Player 1 attack"); Game.STARTUP = false; game.gameState = STATE.GamePlayer1;
 				}
 			} else {
 				HUD.setMessageAll("Non valid Cords"); rotation = 0; arrayX = 0; arrayY = 0;
@@ -155,9 +155,9 @@ public void mouseClicked(MouseEvent e) {
 	/*If statement that checks if the pressed button was the left one.*/
 	if(button == 1 && ! Game.STARTUP) {
 		/*Checks if the values at that you clicked are in the field*/
-		if(mouseX > 1000 && mouseX < 1500 && mouseY > 100 && mouseY < 600 && Game.gameState == STATE.GamePlayer1) {
+		if(mouseX > 1000 && mouseX < 1500 && mouseY > 100 && mouseY < 600 && game.gameState == STATE.GamePlayer1) {
 			player.theGameAttackManager(mouseX, mouseY);
-		} else if(mouseX > 0 && mouseX < 500 && mouseY > 100 && mouseY < 600 && Game.gameState == STATE.GamePlayer2) {
+		} else if(mouseX > 0 && mouseX < 500 && mouseY > 100 && mouseY < 600 && game.gameState == STATE.GamePlayer2) {
 			player.theGameAttackManager(mouseX, mouseY);
 		} else
 			HUD.setMessageAll("Click in field!PLS");

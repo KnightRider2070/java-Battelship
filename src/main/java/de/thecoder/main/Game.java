@@ -35,7 +35,6 @@ public class Game extends Canvas implements Runnable {
 
 public static  int[][][] shipPosition        = new int[10][10][2]; /*shipPosition, ship location of players.*/
 public static  boolean   STARTUP             = true; /*STARTUP to check if game is in STARTUP state.*/
-public static  STATE     gameState           = STATE.Menu; /*Game state. Player one begins.*/
 private static int       shipsAlivePlayerOne = 5;
 private static int       shipsAlivePlayerTwo = 5;
 private final  int       WIDTH               = 1550, HEIGHT = 750; /*HEIGHT,WIDTH of the game window.*/
@@ -43,6 +42,7 @@ private final Handler handler; /*References the handler to a Handler.*/
 private final HUD     hud; /*References the hud to a Hud.*/
 private final Help    help; /*Reference the help page to Help*/
 private final Menu    menu;/*Reference the menu page to Menu*/
+public        STATE   gameState = STATE.Help; /*Game state. Player one begins.*/
 private       Thread  thread; /*References the thread to a Thread.*/
 private       boolean running   = false; /*running to check of the game is in running state.*/
 
@@ -357,7 +357,7 @@ private void render() {
 
 	g.fillRect(0, 0, WIDTH, HEIGHT); /*Where to start painting black.*/
 
-	if(gameState != STATE.Menu && gameState != STATE.Help) {
+	if(gameState != STATE.Menu) {
 		/*The STARTUP input interface.*/
 		if(STARTUP) { /*If statement will check if the program is in STARTUP.*/
 			/*Fonts that are use.*/
@@ -412,8 +412,6 @@ private void render() {
 
 	} if(gameState == STATE.Help) {
 		help.render(g);
-	} if(gameState == STATE.Menu) {
-		menu.render(g);
 	}
 	/*Shows the Objects in the buffer.*/
 	g.dispose(); bs.show();
