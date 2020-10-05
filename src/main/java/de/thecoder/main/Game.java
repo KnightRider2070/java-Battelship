@@ -20,6 +20,14 @@ enum STATE {
 	 * GamePlayer2 is set when player two plays the game.
 	 */
 	GamePlayer2,
+	/**
+	 * Menu that shows before the gameplay
+	 */
+	Menu,
+	/**
+	 * Help screen that shows up
+	 */
+	Help,
 }
 
 public class Game extends Canvas implements Runnable {
@@ -32,7 +40,9 @@ private static int       shipsAlivePlayerTwo = 5;
 private final  int       WIDTH               = 1550, HEIGHT = 750; /*HEIGHT,WIDTH of the game window.*/
 private final Handler handler; /*References the handler to a Handler.*/
 private final HUD     hud; /*References the hud to a Hud.*/
-public        STATE   gameState = STATE.GamePlayer1; /*Game state. Player one begins.*/
+private final Help    help; /*Reference the help page to Help*/
+private final Menu    menu;/*Reference the menu page to Menu*/
+public        STATE   gameState = STATE.Help; /*Game state. Player one begins.*/
 private       Thread  thread; /*References the thread to a Thread.*/
 private       boolean running   = false; /*running to check of the game is in running state.*/
 
@@ -41,11 +51,14 @@ private       boolean running   = false; /*running to check of the game is in ru
  */
 public Game() {
 
+	help    = new Help(); /*Assigns the help page to a new Help.*/ menu = new Menu();
 	handler = new Handler(this);   /*Assigns the handler a new Handler.*/
 	hud     = new HUD(); /*Assigns the hud a new Hud.*/
 	Player player = new Player(1, 1, ID.Player, handler, this); /*Adds the player to the game.*/
 	this.addKeyListener(new KeyInput(this, player)); /*Creating listener for Key input.*/
 	this.addMouseListener(new MouseInput(this, player)); /*Creating listener for Mouse input.*/
+	this.addMouseListener(menu);/*Creating listener for menu Mouse input.*/
+	this.addMouseListener(help);/*Creating listener for help Mouse input.*/
 
 	new Window(WIDTH, HEIGHT, "Battelship", this); /*Creating the Window with the game in it.*/
 }
@@ -344,60 +357,62 @@ private void render() {
 
 	g.fillRect(0, 0, WIDTH, HEIGHT); /*Where to start painting black.*/
 
-	/*The STARTUP input interface.*/
-	if(STARTUP) { /*If statement will check if the program is in STARTUP.*/
-		/*Fonts that are use.*/
-		Font font = new Font("Ariel", Font.PLAIN, 25); Font font2 = new Font("Ariel", Font.PLAIN, 50);
-		/*Headline*/
-		g.setFont(font); g.setColor(Color.ORANGE); g.drawRect(645, 95, 210, 30); g.setColor(Color.white);
-		g.drawString("Setup Input", 685, 120);
+	if(gameState != STATE.Menu) {
+		/*The STARTUP input interface.*/
+		if(STARTUP) { /*If statement will check if the program is in STARTUP.*/
+			/*Fonts that are use.*/
+			Font font = new Font("Ariel", Font.PLAIN, 25); Font font2 = new Font("Ariel", Font.PLAIN, 50);
+			/*Headline*/
+			g.setFont(font); g.setColor(Color.ORANGE); g.drawRect(645, 95, 210, 30); g.setColor(Color.white);
+			g.drawString("Setup Input", 685, 120);
 
 
-		/*First Line*/
-		g.setFont(font2); g.setColor(Color.orange); g.drawRect(645, 150, 50, 50); g.drawRect(725, 150, 50, 50);
-		g.drawRect(805, 150, 50, 50); g.setColor(Color.white); g.drawString("1", 655, 195); g.drawString("2", 735,
-		                                                                                                 195);
-		g.drawString("3", 815, 195);
+			/*First Line*/
+			g.setFont(font2); g.setColor(Color.orange); g.drawRect(645, 150, 50, 50); g.drawRect(725, 150, 50, 50);
+			g.drawRect(805, 150, 50, 50); g.setColor(Color.white); g.drawString("1", 655, 195);
+			g.drawString("2", 735, 195); g.drawString("3", 815, 195);
 
-		/*Second Line*/
-		g.setColor(Color.orange); g.drawRect(645, 220, 50, 50); g.drawRect(725, 220, 50, 50);
-		g.drawRect(805, 220, 50, 50); g.setColor(Color.white); g.drawString("4", 655, 265); g.drawString("5", 735,
-		                                                                                                 265);
-		g.drawString("6", 815, 265);
-		/*Third Line*/
-		g.setColor(Color.orange); g.drawRect(645, 290, 50, 50); g.drawRect(725, 290, 50, 50);
-		g.drawRect(805, 290, 50, 50); g.setColor(Color.white); g.drawString("7", 655, 335); g.drawString("8", 735,
-		                                                                                                 335);
-		g.drawString("9", 815, 335);
-		/*Fourth Line*/
-		g.setColor(Color.ORANGE); g.drawRect(645, 360, 210, 50); g.setColor(Color.white); g.drawString("10", 720, 405);
+			/*Second Line*/
+			g.setColor(Color.orange); g.drawRect(645, 220, 50, 50); g.drawRect(725, 220, 50, 50);
+			g.drawRect(805, 220, 50, 50); g.setColor(Color.white); g.drawString("4", 655, 265);
+			g.drawString("5", 735, 265); g.drawString("6", 815, 265);
+			/*Third Line*/
+			g.setColor(Color.orange); g.drawRect(645, 290, 50, 50); g.drawRect(725, 290, 50, 50);
+			g.drawRect(805, 290, 50, 50); g.setColor(Color.white); g.drawString("7", 655, 335);
+			g.drawString("8", 735, 335); g.drawString("9", 815, 335);
+			/*Fourth Line*/
+			g.setColor(Color.ORANGE); g.drawRect(645, 360, 210, 50); g.setColor(Color.white);
+			g.drawString("10", 720, 405);
 
 
-		/*Fifth Line*/
-		g.setFont(font); g.setColor(Color.ORANGE); g.drawString("Rotations:", 645, 440); g.setColor(Color.ORANGE);
-		g.drawRect(645, 450, 95, 50); g.drawRect(760, 450, 95, 50); g.setColor(Color.white); g.setFont(font2);
-		g.drawString("0", 680, 495); g.drawString("90", 780, 495);
+			/*Fifth Line*/
+			g.setFont(font); g.setColor(Color.ORANGE); g.drawString("Rotations:", 645, 440); g.setColor(Color.ORANGE);
+			g.drawRect(645, 450, 95, 50); g.drawRect(760, 450, 95, 50); g.setColor(Color.white); g.setFont(font2);
+			g.drawString("0", 680, 495); g.drawString("90", 780, 495);
 
 
-	}
-
-	/*First Field*/
-	/*Size of one cell.*/
-	int cellSize = 50; for(int lx = 0; lx < 500; lx += 50) { /*Width 500px starts at 0px ends at 500px*/
-		for(int ly = 100; ly < 600; ly += 50) { /*Height 500px but starts at 100px so ends at 600px*/
-			g.setColor(Color.cyan); g.drawRect(lx, ly, cellSize, cellSize);
 		}
-	}
-	/*Second Field*/
-	for(int lx = 1000; lx < 1500; lx += 50) {  /*Width 500px starts at 1500px ends at 1000px*/
-		for(int ly = 100; ly < 600; ly += 50) { /*Height 500px but starts at 100px so ends at 600px*/
-			g.setColor(Color.green); g.drawRect(lx, ly, cellSize, cellSize);
+
+		/*First Field*/
+		/*Size of one cell.*/
+		int cellSize = 50; for(int lx = 0; lx < 500; lx += 50) { /*Width 500px starts at 0px ends at 500px*/
+			for(int ly = 100; ly < 600; ly += 50) { /*Height 500px but starts at 100px so ends at 600px*/
+				g.setColor(Color.cyan); g.drawRect(lx, ly, cellSize, cellSize);
+			}
 		}
+		/*Second Field*/
+		for(int lx = 1000; lx < 1500; lx += 50) {  /*Width 500px starts at 1500px ends at 1000px*/
+			for(int ly = 100; ly < 600; ly += 50) { /*Height 500px but starts at 100px so ends at 600px*/
+				g.setColor(Color.green); g.drawRect(lx, ly, cellSize, cellSize);
+			}
+		}
+
+		/*Calls render Methods from the other classes so that they will be rendered as well.*/
+		handler.render(g); hud.render(g);
+
+	} if(gameState == STATE.Help) {
+		help.render(g);
 	}
-
-	/*Calls render Methods from the other classes so that they will be rendered as well.*/
-	handler.render(g); hud.render(g);
-
 	/*Shows the Objects in the buffer.*/
 	g.dispose(); bs.show();
 }
