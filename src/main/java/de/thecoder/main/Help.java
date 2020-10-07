@@ -72,6 +72,10 @@ public void mouseClicked(MouseEvent e) {
 			}
 		}
 
+	if(mouseOver(mouseX, mouseY, 1200, 600, 200, 50) && button == 1) {
+		Game.gameState = STATE.Menu;
+	}
+
 }
 
 /**
