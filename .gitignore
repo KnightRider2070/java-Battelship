@@ -261,3 +261,5 @@ $RECYCLE.BIN/
 .vscode/launch.json
 /target/classes/de/thecoder/main/
 /src/main/resources/META-INF/
+/target/
+/pom.xml
