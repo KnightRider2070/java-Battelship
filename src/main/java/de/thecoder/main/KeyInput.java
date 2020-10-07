@@ -7,13 +7,9 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter {
 
 
-private static int    shipType = 1;
 private final  Game   game;  /*Is a reference to the game that was initialised when lunching the program.*/
 private final  Player player; /*player reference final cuz shouldn't be possible to change.*/
-private        int    arrayX; /*Is an integer in array value which should contain the X axis cord.*/
-private        int    arrayY; /*Is an integer in array value which should contain the Y axis cord.*/
-private        int    field    = 0; /*Is an integer which should be 0 or 1 is the layer with cords.*/
-private        int    rotation; /*Is an integer which contains the rotation of the ship possible is 0 and 90.*/
+
 
 /**
  * KeyInput is the constructor.
@@ -39,97 +35,97 @@ public void keyPressed(KeyEvent e) {
 		System.exit(1); /*If statement check if ESC button pressed if it will exit program.*/
 
 	if(Game.STARTUP) { /*If statement check if game is on STARTUP*/
-		HUD.setMessageAll("Set X,Y,Dir. shipType: " + shipType);
+		HUD.setMessageAll("Set X,Y,Dir. shipType: " + MouseInput.shipType);
 
 		if(key == KeyEvent.VK_NUMPAD1 || key == KeyEvent.VK_1) {
-			if(arrayX == 0) {
-				arrayX = 1; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 1; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 1; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 1; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD2 || key == KeyEvent.VK_2) {
-			if(arrayX == 0) {
-				arrayX = 2; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 2; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 2; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 2; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD3 || key == KeyEvent.VK_3) {
-			if(arrayX == 0) {
-				arrayX = 3; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 3; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 3; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 3; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD4 || key == KeyEvent.VK_4) {
-			if(arrayX == 0) {
-				arrayX = 4; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 4; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 4; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 4; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD5 || key == KeyEvent.VK_5) {
-			if(arrayX == 0) {
-				arrayX = 5; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 5; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 5; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 5; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD6 || key == KeyEvent.VK_6) {
-			if(arrayX == 0) {
-				arrayX = 6; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 6; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 6; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 6; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD7 || key == KeyEvent.VK_7) {
-			if(arrayX == 0) {
-				arrayX = 7; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 7; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 7; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 7; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD8 || key == KeyEvent.VK_8) {
-			if(arrayX == 0) {
-				arrayX = 8; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 8; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 8; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 8; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD9 || key == KeyEvent.VK_9) {
-			if(arrayX == 0) {
-				arrayX = 9; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 9; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 9; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 9; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD0 || key == KeyEvent.VK_0) {
-			if(arrayX == 0) {
-				arrayX = 10; HUD.setMessageAll("X set.");
-			} else if(arrayY == 0) {
-				arrayY = 10; HUD.setMessageAll("Y set.");
+			if(MouseInput.arrayX == 0) {
+				MouseInput.arrayX = 10; HUD.setMessageAll("X set.");
+			} else if(MouseInput.arrayY == 0) {
+				MouseInput.arrayY = 10; HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT) {
-			if(rotation == 0) {
-				rotation = 1; HUD.setMessageAll("Rotation set.");
+			if(MouseInput.rotation == 0) {
+				MouseInput.rotation = 1; HUD.setMessageAll("Rotation set.");
 			}
 		} else if(key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
-			if(rotation == 0) {
-				rotation = 90; HUD.setMessageAll("Rotation set.");
+			if(MouseInput.rotation == 0) {
+				MouseInput.rotation = 90; HUD.setMessageAll("Rotation set.");
 			}
 		}
 
 		/*Position status fields.*/
-		HUD.setMessageArrayX(arrayX); HUD.setMessageArrayY(arrayY); HUD.setMessageRotation(rotation);
-		HUD.setMessageShipType(shipType);
+		HUD.setMessageArrayX(MouseInput.arrayX); HUD.setMessageArrayY(MouseInput.arrayY); HUD.setMessageRotation(MouseInput.rotation);
+		HUD.setMessageShipType(MouseInput.shipType);
 
-		if(arrayX != 0 && arrayY != 0 && rotation != 0) { /*If statement check if required integers are entered.*/
+		if(MouseInput.arrayX != 0 && MouseInput.arrayY != 0 && MouseInput.rotation != 0) { /*If statement check if required integers are entered.*/
 			/*Changes values that they are usable.*/
-			if(rotation == 1)
-				rotation = 0; arrayX--; arrayY--;
+			if(MouseInput.rotation == 1)
+				MouseInput.rotation = 0; MouseInput.arrayX--; MouseInput.arrayY--;
 
 			/*If statement will check if it is possible to set a ship.*/
-			if(player.setShip(arrayX, arrayY, field, shipType, rotation)) {
-				HUD.setMessageAll(" "); rotation = 0; arrayX = 0; arrayY = 0; shipType++;
-				if(shipType > 5 && field == 0) {
-					HUD.setMessageAll("Player 2 pls"); shipType = 1; field = 1; Game.gameState = STATE.GamePlayer2;
-				} else if(shipType > 5 && field == 1) {
+			if(player.setShip(MouseInput.arrayX, MouseInput.arrayY, MouseInput.field, MouseInput.shipType, MouseInput.rotation)) {
+				HUD.setMessageAll(" "); MouseInput.rotation = 0; MouseInput.arrayX = 0; MouseInput.arrayY = 0; MouseInput.shipType++;
+				if(MouseInput.shipType > 5 && MouseInput.field == 0) {
+					HUD.setMessageAll("Player 2 pls"); MouseInput.shipType = 1; MouseInput.field = 1; Game.gameState = STATE.GamePlayer2;
+				} else if(MouseInput.shipType > 5 && MouseInput.field == 1) {
 					HUD.setMessageAll("Player 1 attack"); Game.STARTUP = false; Game.gameState = STATE.GamePlayer1;
 				}
 			} else {
-				HUD.setMessageAll("Non valid Cords"); rotation = 0; arrayX = 0; arrayY = 0;
+				HUD.setMessageAll("Non valid Cords"); MouseInput.rotation = 0; MouseInput.arrayX = 0; MouseInput.arrayY = 0;
 			}
 		}
 	}

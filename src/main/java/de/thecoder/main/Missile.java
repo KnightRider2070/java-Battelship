@@ -4,13 +4,18 @@ package de.thecoder.main;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
 
 public class Missile extends GameObject {
 
 private final Handler handler; /*Is the handler that is assigned it should be the handler that is initialized in the
 Game class.*/
 double durationOfAnimation = 0.02; /*The amount how long the missile should be visible.*/
-private float alpha = 1;/*The amount the missile should be visible.*/
+private float         alpha = 1;/*The amount the missile should be visible.*/
+private InputStream   inputStream;
+private BufferedImage image;
 
 
 /**
@@ -23,8 +28,24 @@ private float alpha = 1;/*The amount the missile should be visible.*/
  */
 public Missile(int pixelX, int pixelY, ID id, Handler handler) {
 
-	super(pixelX, pixelY, id); this.handler = handler;
+	super(pixelX, pixelY, id);
+	this.handler = handler;
 }
+
+/**
+ * The methode will get the image.
+ */
+private void getImage() {
+
+		inputStream = getClass().getClassLoader().getResourceAsStream("images/impact.png");
+
+	try {
+		image = ImageIO.read(inputStream);
+	} catch(IOException exception) {
+		exception.printStackTrace();
+	}
+}
+
 
 /*
  *The methode tick called every tick the tick is defined in Game.run().
@@ -46,7 +67,8 @@ public void tick() {
  */
 private AlphaComposite makeTransparent(float alpha) {
 
-	int type = AlphaComposite.SRC_OVER; return (AlphaComposite.getInstance(type, alpha));
+	int type = AlphaComposite.SRC_OVER;
+	return (AlphaComposite.getInstance(type, alpha));
 }
 
 
@@ -55,7 +77,8 @@ private AlphaComposite makeTransparent(float alpha) {
  */
 public void render(Graphics g) {
 
-	g.setColor(Color.red); g.fillRect(pixelX, pixelY, 25, 25);
+		getImage();
+		g.drawImage(image, pixelX, pixelY, null);
 }
 
 }

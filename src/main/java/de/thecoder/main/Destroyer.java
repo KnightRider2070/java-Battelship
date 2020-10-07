@@ -1,15 +1,19 @@
 package de.thecoder.main;
 
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
 
 public class Destroyer extends GameObject {
 
-private final int pixelX;  /*Is a integer in pixel which should contain the X axis cord.*/
-private final int pixelY;    /*Is an integer in pixel which should contain the Y axis cord.*/
-private final int rotation; /*Is an integer which should the rotation of the ship possible is 0 and 90.*/
-
+private final int           pixelX;  /*Is a integer in pixel which should contain the X axis cord.*/
+private final int           pixelY;    /*Is an integer in pixel which should contain the Y axis cord.*/
+private final int           rotation; /*Is an integer which should the rotation of the ship possible is 0 and 90.*/
+private InputStream   inputStream;
+private BufferedImage image;
 
 /**
  * The Destroyer constructor which creates a Destroyer at a specific position.
@@ -21,7 +25,29 @@ private final int rotation; /*Is an integer which should the rotation of the shi
  */
 public Destroyer(final int pixelX, final int pixelY, final int rotation, final ID id) {
 
-	super(pixelX, pixelY, id); this.pixelX = pixelX; this.pixelY = pixelY; this.rotation = rotation;
+	super(pixelX, pixelY, id);
+	this.pixelX   = pixelX;
+	this.pixelY   = pixelY;
+	this.rotation = rotation;
+}
+
+/**
+ * The methode will get the image.
+ *
+ * @param rotated The rotation of the ship.
+ */
+private void getImage(String rotated) {
+
+	if(rotated.equals("0"))
+		inputStream = getClass().getClassLoader().getResourceAsStream("images/ship_images/ship_destroyer.png");
+	if(rotated.equals("90"))
+		inputStream = getClass().getClassLoader().getResourceAsStream("images/ship_images/ship_destroyer_rotated.png");
+
+	try {
+		image = ImageIO.read(inputStream);
+	} catch(IOException exception) {
+		exception.printStackTrace();
+	}
 }
 
 /**
@@ -38,10 +64,12 @@ public void tick() {
  */
 public void render(Graphics g) {
 
-	g.setColor(Color.ORANGE); if(rotation == 0) {
-		g.fillRect(pixelX, pixelY, 100, 50);
+	if(rotation == 0) {
+		getImage("0");
+		g.drawImage(image, pixelX, pixelY, null);
 	} else if(rotation == 90) {
-		g.fillRect(pixelX, pixelY, 50, 100);
+		getImage("90");
+		g.drawImage(image, pixelX, pixelY, null);
 	}
 }
 

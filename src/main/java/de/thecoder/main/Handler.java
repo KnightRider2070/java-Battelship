@@ -98,26 +98,34 @@ public void tick() {
 public void render(Graphics g) {
 
 	if(Game.gameState == STATE.GameEnd) {
-		for(GameObject tempObject : playerOneObject) {
+		for(int i = 0, size = playerOneObject.size(); i < size; i++) {
+			GameObject tempObject = playerOneObject.get(i);
 			tempObject.render(g);
-		} for(GameObject tempObject : playerTwoObject) {
+		}
+		for(int i = 0, size = playerTwoObject.size(); i < size; i++) {
+			GameObject tempObject = playerTwoObject.get(i);
 			tempObject.render(g);
-		} for(GameObject tempObject : object) {
+		}
+		for(int i = 0, size = object.size(); i < size; i++) {
+			GameObject tempObject = object.get(i);
 			tempObject.render(g);
 		}
 	}
 
 	if(Game.gameState == STATE.GamePlayer1)  /*If statement will check if game state is player ones.*/
-		for(GameObject tempObject : playerOneObject) { /*For each loop loops through the list playerOneObject.*/
+		for(int i = 0, size = playerOneObject.size(); i < size; i++) {
+			GameObject tempObject = playerOneObject.get(i); /*For each loop loops through the list playerOneObject.*/
 			tempObject.render(g);
 		}
 
 	if(Game.gameState == STATE.GamePlayer2)
-		for(GameObject tempObject : playerTwoObject) { /*For each loop loops through the list playerTwoObject.*/
+		for(int i = 0, size = playerTwoObject.size(); i < size; i++) {
+			GameObject tempObject = playerTwoObject.get(i); /*For each loop loops through the list playerTwoObject.*/
 			tempObject.render(g);
 		}
 
-	for(GameObject tempObject : object) { /*For each loop loops through the list object.*/
+	for(int i = 0, size = object.size(); i < size; i++) {
+		GameObject tempObject = object.get(i); /*For each loop loops through the list object.*/
 		tempObject.render(g);
 	}
 }

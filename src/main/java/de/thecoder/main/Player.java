@@ -187,7 +187,7 @@ public void attackTheShip(int pixelX, int pixelY, int arrayX, int arrayY, int fi
 			//TODO: Center the creation at the fields
 			handler.addObject(
 					new Missile(pixelX, pixelY, ID.Missile, handler)); /*Adds the missile at the hit position.*/
-			handler.addObject(new MissileFragment(pixelX, pixelY, "red", ID.MissileFragment, handler));
+			handler.addObject(new MissileFragment(pixelX, pixelY, "red", ID.MissileFragment));
 
 			Game.shipPosition[arrayX][arrayY][field] = shipType * 11; /*Sets ship destroyed.*/
 
@@ -208,12 +208,11 @@ public void attackTheShip(int pixelX, int pixelY, int arrayX, int arrayY, int fi
 		} else {
 			/*The attack was not a hit so it will add objects to show this.*/
 			isHit = false; if(field == 0)
-				handler.addObjectTwo(new MissileFragment(pixelX, pixelY, "green", ID.MissileFragment, handler));
+				handler.addObjectTwo(new MissileFragment(pixelX, pixelY, "green", ID.MissileFragment));
 			else if(field == 1)
-				handler.addObjectOne(new MissileFragment(pixelX, pixelY, "green", ID.MissileFragment, handler));
+				handler.addObjectOne(new MissileFragment(pixelX, pixelY, "green", ID.MissileFragment));
 		}
 }
-
 
 /**
  * The Methode checks if at the cords is a ship.
