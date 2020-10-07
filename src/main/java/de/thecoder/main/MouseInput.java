@@ -13,8 +13,8 @@ public static int    arrayY;/*Is an integer in array value which should contain 
 public static int    rotation;/*Is an integer which should the rotation of the ship possible is 0 and 90.*/
 public static int    field    = 0;/*Is an integer which should be 0(Player One) or 1(Player Two) is the layer with
 ship cords.*/
-private final  Game   game; /*Is a reference to the game that was initialised when lunching the program.*/
-private final  Player player;/*Is a reference to the player that was initialised when calling Game() methode.*/
+private final Game   game; /*Is a reference to the game that was initialised when lunching the program.*/
+private final Player player;/*Is a reference to the player that was initialised when calling Game() methode.*/
 
 
 /**

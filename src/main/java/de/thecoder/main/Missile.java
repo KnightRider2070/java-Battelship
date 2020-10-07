@@ -2,11 +2,11 @@ package de.thecoder.main;
 
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.*;
-import java.io.*;
-import javax.imageio.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 
 public class Missile extends GameObject {
 
@@ -37,7 +37,7 @@ public Missile(int pixelX, int pixelY, ID id, Handler handler) {
  */
 private void getImage() {
 
-		inputStream = getClass().getClassLoader().getResourceAsStream("images/impact.png");
+	inputStream = getClass().getClassLoader().getResourceAsStream("images/impact.png");
 
 	try {
 		image = ImageIO.read(inputStream);
@@ -77,8 +77,8 @@ private AlphaComposite makeTransparent(float alpha) {
  */
 public void render(Graphics g) {
 
-		getImage();
-		g.drawImage(image, pixelX, pixelY, null);
+	getImage();
+	g.drawImage(image, pixelX, pixelY, null);
 }
 
 }

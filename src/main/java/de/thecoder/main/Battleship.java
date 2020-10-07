@@ -2,9 +2,10 @@ package de.thecoder.main;
 
 
 import java.awt.Graphics;
-import java.awt.image.*;
-import java.io.*;
-import javax.imageio.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 
 public class Battleship extends GameObject {
 

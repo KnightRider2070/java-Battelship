@@ -1,19 +1,19 @@
 package de.thecoder.main;
 
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-import java.io.*;
-import javax.imageio.*;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 
 public class Destroyer extends GameObject {
 
 private final int           pixelX;  /*Is a integer in pixel which should contain the X axis cord.*/
 private final int           pixelY;    /*Is an integer in pixel which should contain the Y axis cord.*/
 private final int           rotation; /*Is an integer which should the rotation of the ship possible is 0 and 90.*/
-private InputStream   inputStream;
-private BufferedImage image;
+private       InputStream   inputStream;
+private       BufferedImage image;
 
 /**
  * The Destroyer constructor which creates a Destroyer at a specific position.

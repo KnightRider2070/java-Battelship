@@ -1,9 +1,11 @@
 package de.thecoder.main;
 
 
-import java.awt.*;
-import java.io.*;
-import javax.imageio.*;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 
 
 public class MissileFragment extends GameObject {
