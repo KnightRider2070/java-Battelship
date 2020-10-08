@@ -399,7 +399,7 @@ private void render() {
 		return;
 	}
 
-	Graphics g =  bs.getDrawGraphics();
+	Graphics g = bs.getDrawGraphics();
 
 	g.setColor(Color.BLACK); /*Background*/
 
