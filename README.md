@@ -42,8 +42,9 @@ The Game Documentation also called GameDoc, if you want to understand the code o
 ![Latest Repo Version](https://img.shields.io/github/v/tag/KnightRider2070/java-Battelship?style=for-the-badge)
 
 ### Download Versions
-**Pre Release**
-<br>
+#### [Pre Release](https://github.com/KnightRider2070/java-Battelship/releases/latest) 
+
 ![Version latest Pre Release](https://img.shields.io/github/v/release/KnightRider2070/java-Battelship?include_prereleases&style=for-the-badge)
-<br>
-<br>
+
+## Disclaimer
+First Pre-Release may have smaller bugs that will be fixed as soon as possible.
