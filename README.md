@@ -8,7 +8,7 @@ Battelship is a game, that should be a simple Battleship game, that has the poss
 ## Installation
 
 Use your favourite IDE to start the project. 
-####Recommended:
+#### Recommended:
 * InteliJ
 * VS Code
 
