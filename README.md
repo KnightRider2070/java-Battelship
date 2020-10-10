@@ -12,7 +12,7 @@ Use your favourite IDE to start the project.
 * InteliJ
 * VS Code
 
-####Requirements:
+#### Requirements:
 * JDK : Java 11
 * Main Class: Game
 
