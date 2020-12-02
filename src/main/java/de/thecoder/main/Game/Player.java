@@ -144,6 +144,8 @@ public void theGameAttackManager(int rawPixelX, int rawPixelY) {
 		} else {
 			Game.gameState = STATE.GamePlayer1;
 		}
+	} else if(Game.gameState == STATE.GameEnd) {
+		game.render();
 	}
 }
 
@@ -160,7 +162,7 @@ public void theAttackOrder(int rawPixelX, int rawPixelY) {
 	                                           rawPixelY);/*arrayCoordinates array which contain the array cords.*/
 	int arrayX = arrayCoordinates[0]; /*arrayX is an integer which contains the X axis assigned from the array.*/
 	int arrayY = arrayCoordinates[1]; /*arrayY is an integer which contains the Y axis assigned from the array.*/
-	int field  = arrayCoordinates[2];    /*field is an integer which contains the field assigned from the array.*/
+	int field  = arrayCoordinates[2]; /*field is an integer which contains the field assigned from the array.*/
 
 	int[] pixelCoordinates = Game.cordsToPixels(arrayX, arrayY,
 	                                            field);/*pixelCoordinates is an array which contains pixel cords.*/
@@ -171,15 +173,17 @@ public void theAttackOrder(int rawPixelX, int rawPixelY) {
 
 	/*Checks if a player won the game.*/
 	if(Game.getShipsAlivePlayerOne() == 0) {
-		Game.gameState = STATE.GameEnd;
 		HUD.setMessageAll("GAME ENDED!");
 		HUD.setMessageOne("LOST :(!");
 		HUD.setMessageTwo("WON :)!");
-	} else if(Game.getShipsAlivePlayerTwo() == 0) {
+		Game.winner    = 2;
 		Game.gameState = STATE.GameEnd;
+	} else if(Game.getShipsAlivePlayerTwo() == 0) {
 		HUD.setMessageAll("GAME ENDED!");
 		HUD.setMessageOne("WON :)!");
 		HUD.setMessageTwo("LOST :(!");
+		Game.winner    = 1;
+		Game.gameState = STATE.GameEnd;
 	} else
 		attackTheShip(pixelX, pixelY, arrayX, arrayY, field, shipType);
 
@@ -199,7 +203,6 @@ public void attackTheShip(int pixelX, int pixelY, int arrayX, int arrayY, int fi
 
 	if(arrayX < Game.shipPosition.length && arrayX >= 0 && arrayY < Game.shipPosition.length && arrayY >= 0)
 		if(checkIfShip(arrayX, arrayY, field) && ! checkIfShipIsHit(arrayX, arrayY, field, shipType)) {
-			//TODO: Center the creation at the fields
 			handler.addObject(
 					new Missile(pixelX, pixelY, ID.Missile, handler)); /*Adds the missile at the hit position.*/
 			handler.addObject(new MissileFragment(pixelX, pixelY, "red", ID.MissileFragment));

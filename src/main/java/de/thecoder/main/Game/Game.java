@@ -39,6 +39,7 @@ public class Game extends Canvas implements Runnable {
 public static  int[][][] shipPosition        = new int[10][10][2]; /*shipPosition, ship location of players.*/
 public static  boolean   STARTUP             = true; /*STARTUP to check if game is in STARTUP state.*/
 public static  STATE     gameState           = STATE.Menu; /*Game state. Player one begins.*/
+public static  int       winner;
 private static int       shipsAlivePlayerOne = 5;
 private static int       shipsAlivePlayerTwo = 5;
 private final  int       WIDTH               = 1550, HEIGHT = 750; /*HEIGHT,WIDTH of the game window.*/
@@ -46,6 +47,7 @@ private final Handler handler; /*References the handler to a Handler.*/
 private final HUD     hud; /*References the hud to a Hud.*/
 private final Help    help; /*Reference the help page to Help*/
 private final Menu    menu;/*Reference the menu page to Menu*/
+private final GameEnd gameEnd;/*Reference the menu page to Menu*/
 private       Thread  thread; /*References the thread to a Thread.*/
 private       boolean running = false; /*running to check of the game is in running state.*/
 
@@ -58,6 +60,7 @@ public Game() {
 	menu    = new Menu();
 	handler = new Handler(this);   /*Assigns the handler a new Handler.*/
 	hud     = new HUD(); /*Assigns the hud a new Hud.*/
+	gameEnd = new GameEnd();
 	Player player = new Player(1, 1, ID.Player, handler, this); /*Adds the player to the game.*/
 	this.addKeyListener(new KeyInput(this, player)); /*Creating listener for Key input.*/
 	this.addMouseListener(new MouseInput(this, player)); /*Creating listener for Mouse input.*/
@@ -385,11 +388,11 @@ private void tick() {
 }
 
 /**
- * The methode allows it the game to show all graphics and render them it can be found in every object class. Those
+ * The methode allows it the game to show all graphics and render them, it can be found in every object class. Those
  * object render classes has to be added to this super render class if they should be executed. The objects that are
  * created through the handler shouldn't be added cuz they are rendered through the handler class render methode.
  */
-private void render() {
+protected void render() {
 
 	BufferStrategy bs = this.getBufferStrategy();  /*Is a buffer stores drawn graphics.*/
 	if(bs == null) {
@@ -403,7 +406,7 @@ private void render() {
 
 	g.fillRect(0, 0, WIDTH, HEIGHT); /*Where to start painting black.*/
 
-	if(gameState != STATE.Menu && gameState != STATE.Help) {
+	if(gameState != STATE.Menu && gameState != STATE.Help && gameState != STATE.GameEnd) {
 		/*The STARTUP input interface.*/
 		if(STARTUP) { /*If statement will check if the program is in STARTUP.*/
 			/*Fonts that are use.*/
@@ -495,6 +498,9 @@ private void render() {
 	}
 	if(gameState == STATE.Menu) {
 		menu.render(g);
+	}
+	if(gameState == STATE.GameEnd) {
+		gameEnd.render(g);
 	}
 	/*Shows the Objects in the buffer.*/
 	g.dispose();
