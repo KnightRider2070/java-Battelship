@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 
@@ -20,7 +20,10 @@ private       Image       image;
 
 public MissileFragment(int pixelX, int pixelY, String color, ID id) {
 
-	super(pixelX, pixelY, id); this.pixelX = pixelX; this.pixelY = pixelY; this.color = color;
+	super(pixelX, pixelY, id);
+	this.pixelX = pixelX;
+	this.pixelY = pixelY;
+	this.color  = color;
 }
 
 /**
@@ -56,7 +59,8 @@ private void getImage(String color) {
 public void render(Graphics g) {
 
 	if(color.equals("red"))
-		getImage("red"); if(color.equals("green"))
+		getImage("red");
+	if(color.equals("green"))
 		getImage("green");
 
 	g.drawImage(image, pixelX, pixelY, null);

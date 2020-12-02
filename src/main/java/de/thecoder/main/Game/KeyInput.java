@@ -19,7 +19,8 @@ private final Player player; /*player reference final cuz shouldn't be possible 
  */
 public KeyInput(Game game, Player player) {
 
-	this.player = player; this.game = game;
+	this.player = player;
+	this.game   = game;
 }
 
 
@@ -39,97 +40,133 @@ public void keyPressed(KeyEvent e) {
 
 		if(key == KeyEvent.VK_NUMPAD1 || key == KeyEvent.VK_1) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 1; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 1;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 1; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 1;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD2 || key == KeyEvent.VK_2) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 2; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 2;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 2; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 2;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD3 || key == KeyEvent.VK_3) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 3; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 3;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 3; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 3;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD4 || key == KeyEvent.VK_4) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 4; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 4;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 4; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 4;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD5 || key == KeyEvent.VK_5) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 5; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 5;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 5; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 5;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD6 || key == KeyEvent.VK_6) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 6; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 6;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 6; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 6;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD7 || key == KeyEvent.VK_7) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 7; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 7;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 7; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 7;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD8 || key == KeyEvent.VK_8) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 8; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 8;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 8; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 8;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD9 || key == KeyEvent.VK_9) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 9; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 9;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 9; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 9;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_NUMPAD0 || key == KeyEvent.VK_0) {
 			if(MouseInput.arrayX == 0) {
-				MouseInput.arrayX = 10; HUD.setMessageAll("X set.");
+				MouseInput.arrayX = 10;
+				HUD.setMessageAll("X set.");
 			} else if(MouseInput.arrayY == 0) {
-				MouseInput.arrayY = 10; HUD.setMessageAll("Y set.");
+				MouseInput.arrayY = 10;
+				HUD.setMessageAll("Y set.");
 			}
 		} else if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT) {
 			if(MouseInput.rotation == 0) {
-				MouseInput.rotation = 1; HUD.setMessageAll("Rotation set.");
+				MouseInput.rotation = 1;
+				HUD.setMessageAll("Rotation set.");
 			}
 		} else if(key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN) {
 			if(MouseInput.rotation == 0) {
-				MouseInput.rotation = 90; HUD.setMessageAll("Rotation set.");
+				MouseInput.rotation = 90;
+				HUD.setMessageAll("Rotation set.");
 			}
 		}
 
 		/*Position status fields.*/
-		HUD.setMessageArrayX(MouseInput.arrayX); HUD.setMessageArrayY(MouseInput.arrayY);
-		HUD.setMessageRotation(MouseInput.rotation); HUD.setMessageShipType(MouseInput.shipType);
+		HUD.setMessageArrayX(MouseInput.arrayX);
+		HUD.setMessageArrayY(MouseInput.arrayY);
+		HUD.setMessageRotation(MouseInput.rotation);
+		HUD.setMessageShipType(MouseInput.shipType);
 
 		if(MouseInput.arrayX != 0 && MouseInput.arrayY != 0 && MouseInput.rotation != 0) { /*If statement check if
 		required integers are entered.*/
 			/*Changes values that they are usable.*/
 			if(MouseInput.rotation == 1)
-				MouseInput.rotation = 0; MouseInput.arrayX--; MouseInput.arrayY--;
+				MouseInput.rotation = 0;
+			MouseInput.arrayX--;
+			MouseInput.arrayY--;
 
 			/*If statement will check if it is possible to set a ship.*/
 			if(player.setShip(MouseInput.arrayX, MouseInput.arrayY, MouseInput.field, MouseInput.shipType,
 			                  MouseInput.rotation)) {
-				HUD.setMessageAll(" "); MouseInput.rotation = 0; MouseInput.arrayX = 0; MouseInput.arrayY = 0;
-				MouseInput.shipType++; if(MouseInput.shipType > 5 && MouseInput.field == 0) {
-					HUD.setMessageAll("Player 2 pls"); MouseInput.shipType = 1; MouseInput.field = 1;
-					                                   Game.gameState      = STATE.GamePlayer2;
+				HUD.setMessageAll(" ");
+				MouseInput.rotation = 0;
+				MouseInput.arrayX   = 0;
+				MouseInput.arrayY   = 0;
+				MouseInput.shipType++;
+				if(MouseInput.shipType > 5 && MouseInput.field == 0) {
+					HUD.setMessageAll("Player 2 pls");
+					MouseInput.shipType = 1;
+					MouseInput.field    = 1;
+					Game.gameState      = STATE.GamePlayer2;
 				} else if(MouseInput.shipType > 5 && MouseInput.field == 1) {
-					HUD.setMessageAll("Player 1 attack"); Game.STARTUP = false; Game.gameState = STATE.GamePlayer1;
+					HUD.setMessageAll("Player 1 attack");
+					Game.STARTUP   = false;
+					Game.gameState = STATE.GamePlayer1;
 				}
 			} else {
-				HUD.setMessageAll("Non valid Cords"); MouseInput.rotation = 0; MouseInput.arrayX = 0;
-				                                      MouseInput.arrayY   = 0;
+				HUD.setMessageAll("Non valid Cords");
+				MouseInput.rotation = 0;
+				MouseInput.arrayX   = 0;
+				MouseInput.arrayY   = 0;
 			}
 		}
 	}

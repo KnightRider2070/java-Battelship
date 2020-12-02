@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 public class Missile extends GameObject {
@@ -29,7 +29,8 @@ private BufferedImage image;
  */
 public Missile(int pixelX, int pixelY, ID id, Handler handler) {
 
-	super(pixelX, pixelY, id); this.handler = handler;
+	super(pixelX, pixelY, id);
+	this.handler = handler;
 }
 
 /**
@@ -67,7 +68,8 @@ public void tick() {
  */
 private AlphaComposite makeTransparent(float alpha) {
 
-	int type = AlphaComposite.SRC_OVER; return (AlphaComposite.getInstance(type, alpha));
+	int type = AlphaComposite.SRC_OVER;
+	return (AlphaComposite.getInstance(type, alpha));
 }
 
 
@@ -76,7 +78,8 @@ private AlphaComposite makeTransparent(float alpha) {
  */
 public void render(Graphics g) {
 
-	getImage(); g.drawImage(image, pixelX, pixelY, null);
+	getImage();
+	g.drawImage(image, pixelX, pixelY, null);
 }
 
 }

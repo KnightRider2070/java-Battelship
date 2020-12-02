@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 public class Submarine extends GameObject {
@@ -29,7 +29,10 @@ private       BufferedImage image;
  */
 public Submarine(int pixelX, int pixelY, int rotation, ID id) {
 
-	super(pixelX, pixelY, id); this.pixelX = pixelX; this.pixelY = pixelY; this.rotation = rotation;
+	super(pixelX, pixelY, id);
+	this.pixelX   = pixelX;
+	this.pixelY   = pixelY;
+	this.rotation = rotation;
 }
 
 
@@ -67,9 +70,11 @@ public void tick() {
 public void render(Graphics g) {
 
 	if(rotation == 0) {
-		getImage("0"); g.drawImage(image, pixelX, pixelY, null);
+		getImage("0");
+		g.drawImage(image, pixelX, pixelY, null);
 	} else if(rotation == 90) {
-		getImage("90"); g.drawImage(image, pixelX, pixelY, null);
+		getImage("90");
+		g.drawImage(image, pixelX, pixelY, null);
 	}
 
 }

@@ -99,11 +99,16 @@ public void render(Graphics g) {
 
 	if(Game.gameState == STATE.GameEnd) {
 		for(int i = 0, size = playerOneObject.size(); i < size; i++) {
-			GameObject tempObject = playerOneObject.get(i); tempObject.render(g);
-		} for(int i = 0, size = playerTwoObject.size(); i < size; i++) {
-			GameObject tempObject = playerTwoObject.get(i); tempObject.render(g);
-		} for(int i = 0, size = object.size(); i < size; i++) {
-			GameObject tempObject = object.get(i); tempObject.render(g);
+			GameObject tempObject = playerOneObject.get(i);
+			tempObject.render(g);
+		}
+		for(int i = 0, size = playerTwoObject.size(); i < size; i++) {
+			GameObject tempObject = playerTwoObject.get(i);
+			tempObject.render(g);
+		}
+		for(int i = 0, size = object.size(); i < size; i++) {
+			GameObject tempObject = object.get(i);
+			tempObject.render(g);
 		}
 	}
 
@@ -120,7 +125,8 @@ public void render(Graphics g) {
 		}
 
 	for(int i = 0, size = object.size(); i < size; i++) {
-		GameObject tempObject = object.get(i); /*For each loop loops through the list object.*/ tempObject.render(g);
+		GameObject tempObject = object.get(i); /*For each loop loops through the list object.*/
+		tempObject.render(g);
 	}
 }
 

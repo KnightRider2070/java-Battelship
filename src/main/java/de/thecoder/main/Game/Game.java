@@ -54,7 +54,8 @@ private       boolean running = false; /*running to check of the game is in runn
  */
 public Game() {
 
-	help    = new Help(); /*Assigns the help page to a new Help.*/ menu = new Menu();
+	help    = new Help(); /*Assigns the help page to a new Help.*/
+	menu    = new Menu();
 	handler = new Handler(this);   /*Assigns the handler a new Handler.*/
 	hud     = new HUD(); /*Assigns the hud a new Hud.*/
 	Player player = new Player(1, 1, ID.Player, handler, this); /*Adds the player to the game.*/
@@ -96,19 +97,22 @@ public static int[] pixelsToCord(int pixelX, int pixelY) {
 		for(int i = 0, z = 50, j = 0; z <= 500; i += 50, z += 50, j++) {
 
 			if(pixelX >= i && pixelX <= z) { /*If statement will check if the cords are in the possible field.*/
-				convX = j; break;
+				convX = j;
+				break;
 			}
 		}
 
 		/*Equals code above only the field beginning has changed.*/
 		for(int i = 100, z = 150, j = 0; z <= 600; i += 50, z += 50, j++) {
 			if(pixelY >= i && pixelY <= z) {
-				convY = j; break;
+				convY = j;
+				break;
 			}
 		}
 
 		/*Assigns the tempXYF array the calculated coordinates. No field assignment its already 0.*/
-		tempXYF[0] = clamp(convX, 0, 10); tempXYF[1] = clamp(convY, 0, 10);
+		tempXYF[0] = clamp(convX, 0, 10);
+		tempXYF[1] = clamp(convY, 0, 10);
 
 		return tempXYF;
 
@@ -118,21 +122,27 @@ public static int[] pixelsToCord(int pixelX, int pixelY) {
 
 		for(int i = 1000, z = 1050, j = 0; z <= 1500; i += 50, z += 50, j++) {
 			if(pixelX >= i && pixelX <= z) {
-				convX = j; break;
+				convX = j;
+				break;
 			}
 		}
 
 		for(int i = 100, z = 150, j = 0; z <= 600; i += 50, z += 50, j++) {
 			if(pixelY >= i && pixelY <= z) {
-				convY = j; break;
+				convY = j;
+				break;
 			}
 		}
 
-		tempXYF[0] = clamp(convX, 0, 10); tempXYF[1] = clamp(convY, 0, 10); tempXYF[2] = field;
+		tempXYF[0] = clamp(convX, 0, 10);
+		tempXYF[1] = clamp(convY, 0, 10);
+		tempXYF[2] = field;
 
 		return tempXYF;
 	} else {
-		System.out.println("Error when converting pixels to cords! Not in the field."); System.exit(1); return null;
+		System.out.println("Error when converting pixels to cords! Not in the field.");
+		System.exit(1);
+		return null;
 	}
 }
 
@@ -158,10 +168,13 @@ public static int[] cordsToPixels(int arrayX, int arrayY, int field) {
 		return tempXY;
 		/*Equals code above only the field has changed.*/
 	} else if(field == 1) {
-		tempXY[0] = clamp(arrayX * 50 + 1000, 1000, 1500); tempXY[1] = clamp(arrayY * 50 + 100, 100, 600);
+		tempXY[0] = clamp(arrayX * 50 + 1000, 1000, 1500);
+		tempXY[1] = clamp(arrayY * 50 + 100, 100, 600);
 		return tempXY;
 	} else {
-		System.out.println("ERROR: Entered wrong field. Methode: cordsToPixels"); System.exit(1); return null;
+		System.out.println("ERROR: Entered wrong field. Methode: cordsToPixels");
+		System.exit(1);
+		return null;
 	}
 }
 
@@ -199,13 +212,18 @@ public static GameObject shipTypeToObject(int arrayX, int arrayY, int field, int
 
 
 	if(shipType == 1)   /*If statement will checks which ship type is given.*/
-		return new Carrier(pixelX, pixelY, rotation, ID.Carrier); if(shipType == 2)
-		return new Battleship(pixelX, pixelY, rotation, ID.Battleship); if(shipType == 3)
-		return new Cruiser(pixelX, pixelY, rotation, ID.Cruiser); if(shipType == 4)
-		return new Submarine(pixelX, pixelY, rotation, ID.Submarine); if(shipType == 5)
+		return new Carrier(pixelX, pixelY, rotation, ID.Carrier);
+	if(shipType == 2)
+		return new Battleship(pixelX, pixelY, rotation, ID.Battleship);
+	if(shipType == 3)
+		return new Cruiser(pixelX, pixelY, rotation, ID.Cruiser);
+	if(shipType == 4)
+		return new Submarine(pixelX, pixelY, rotation, ID.Submarine);
+	if(shipType == 5)
 		return new Destroyer(pixelX, pixelY, rotation, ID.Destroyer);
 
-	System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToObject"); return null;
+	System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToObject");
+	return null;
 }
 
 /**
@@ -219,13 +237,18 @@ public static GameObject shipTypeToObject(int arrayX, int arrayY, int field, int
 public static int shipTypeToSize(int shipType) {
 
 	if(shipType == 1 || shipType == 11) /*If statement will check if the ship is a ship or destroyed ship.*/
-		return 5; if(shipType == 2 || shipType == 22)
-		return 4; if(shipType == 3 || shipType == 33)
-		return 3; if(shipType == 4 || shipType == 44)
-		return 3; if(shipType == 5 || shipType == 55)
+		return 5;
+	if(shipType == 2 || shipType == 22)
+		return 4;
+	if(shipType == 3 || shipType == 33)
+		return 3;
+	if(shipType == 4 || shipType == 44)
+		return 3;
+	if(shipType == 5 || shipType == 55)
 		return 2;
 
-	System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToSize"); return 0;
+	System.out.println("ERROR: Entered the wrong shipType Methode: shipTypeToSize");
+	return 0;
 }
 
 /**
@@ -294,7 +317,9 @@ public static void setShipsAlivePlayerTwo(int shipsAlivePlayerTwo) {
  */
 public synchronized void start() {
 
-	thread = new Thread(this); /*Creates a new Thread and targets this Game class.*/ thread.start(); running = true;
+	thread = new Thread(this); /*Creates a new Thread and targets this Game class.*/
+	thread.start();
+	running = true;
 }
 
 /**
@@ -320,18 +345,32 @@ public synchronized void stop() {
  */
 public void run() {
 
-	this.requestFocus(); long lastTimeCode = System.nanoTime(); double amountOfTicks = 60.0;
-	double                    ns           = 1000000000 / amountOfTicks; double delta = 0;
-	long                      timer        = System.currentTimeMillis(); int frames = 0; while(running) {
-		long now = System.nanoTime(); delta += (now - lastTimeCode) / ns; lastTimeCode = now; while(delta >= 1) {
-			tick(); delta--;
-		} if(running)
-			render(); frames++;
+	this.requestFocus();
+	long   lastTimeCode  = System.nanoTime();
+	double amountOfTicks = 60.0;
+	double ns            = 1000000000 / amountOfTicks;
+	double delta         = 0;
+	long   timer         = System.currentTimeMillis();
+	int    frames        = 0;
+	while(running) {
+		long now = System.nanoTime();
+		delta += (now - lastTimeCode) / ns;
+		lastTimeCode = now;
+		while(delta >= 1) {
+			tick();
+			delta--;
+		}
+		if(running)
+			render();
+		frames++;
 
 		if(System.currentTimeMillis() - timer > 1000) {
-			timer += 1000; System.out.println("FPS: " + frames); frames = 0;
+			timer += 1000;
+			System.out.println("FPS: " + frames);
+			frames = 0;
 		}
-	} stop();
+	}
+	stop();
 }
 
 /**
@@ -341,7 +380,8 @@ public void run() {
  */
 private void tick() {
 
-	handler.tick(); hud.tick();
+	handler.tick();
+	hud.tick();
 }
 
 /**
@@ -351,8 +391,10 @@ private void tick() {
  */
 private void render() {
 
-	BufferStrategy bs = this.getBufferStrategy();  /*Is a buffer stores drawn graphics.*/ if(bs == null) {
-		this.createBufferStrategy(3); return;
+	BufferStrategy bs = this.getBufferStrategy();  /*Is a buffer stores drawn graphics.*/
+	if(bs == null) {
+		this.createBufferStrategy(3);
+		return;
 	}
 
 	Graphics g = bs.getDrawGraphics();
@@ -365,62 +407,98 @@ private void render() {
 		/*The STARTUP input interface.*/
 		if(STARTUP) { /*If statement will check if the program is in STARTUP.*/
 			/*Fonts that are use.*/
-			Font font = new Font("Ariel", Font.PLAIN, 25); Font font2 = new Font("Ariel", Font.PLAIN, 50);
+			Font font  = new Font("Ariel", Font.PLAIN, 25);
+			Font font2 = new Font("Ariel", Font.PLAIN, 50);
 			/*Headline*/
-			g.setFont(font); g.setColor(Color.ORANGE); g.drawRect(645, 95, 210, 30); g.setColor(Color.white);
+			g.setFont(font);
+			g.setColor(Color.ORANGE);
+			g.drawRect(645, 95, 210, 30);
+			g.setColor(Color.white);
 			g.drawString("Setup Input", 685, 120);
 
 
 			/*First Line*/
-			g.setFont(font2); g.setColor(Color.orange); g.drawRect(645, 150, 50, 50); g.drawRect(725, 150, 50, 50);
-			g.drawRect(805, 150, 50, 50); g.setColor(Color.white); g.drawString("1", 655, 195);
-			g.drawString("2", 735, 195); g.drawString("3", 815, 195);
+			g.setFont(font2);
+			g.setColor(Color.orange);
+			g.drawRect(645, 150, 50, 50);
+			g.drawRect(725, 150, 50, 50);
+			g.drawRect(805, 150, 50, 50);
+			g.setColor(Color.white);
+			g.drawString("1", 655, 195);
+			g.drawString("2", 735, 195);
+			g.drawString("3", 815, 195);
 
 			/*Second Line*/
-			g.setColor(Color.orange); g.drawRect(645, 220, 50, 50); g.drawRect(725, 220, 50, 50);
-			g.drawRect(805, 220, 50, 50); g.setColor(Color.white); g.drawString("4", 655, 265);
-			g.drawString("5", 735, 265); g.drawString("6", 815, 265);
+			g.setColor(Color.orange);
+			g.drawRect(645, 220, 50, 50);
+			g.drawRect(725, 220, 50, 50);
+			g.drawRect(805, 220, 50, 50);
+			g.setColor(Color.white);
+			g.drawString("4", 655, 265);
+			g.drawString("5", 735, 265);
+			g.drawString("6", 815, 265);
 			/*Third Line*/
-			g.setColor(Color.orange); g.drawRect(645, 290, 50, 50); g.drawRect(725, 290, 50, 50);
-			g.drawRect(805, 290, 50, 50); g.setColor(Color.white); g.drawString("7", 655, 335);
-			g.drawString("8", 735, 335); g.drawString("9", 815, 335);
+			g.setColor(Color.orange);
+			g.drawRect(645, 290, 50, 50);
+			g.drawRect(725, 290, 50, 50);
+			g.drawRect(805, 290, 50, 50);
+			g.setColor(Color.white);
+			g.drawString("7", 655, 335);
+			g.drawString("8", 735, 335);
+			g.drawString("9", 815, 335);
 			/*Fourth Line*/
-			g.setColor(Color.ORANGE); g.drawRect(645, 360, 210, 50); g.setColor(Color.white);
+			g.setColor(Color.ORANGE);
+			g.drawRect(645, 360, 210, 50);
+			g.setColor(Color.white);
 			g.drawString("10", 720, 405);
 
 
 			/*Fifth Line*/
-			g.setFont(font); g.setColor(Color.ORANGE); g.drawString("Rotations:", 645, 440); g.setColor(Color.ORANGE);
-			g.drawRect(645, 450, 95, 50); g.drawRect(760, 450, 95, 50); g.setColor(Color.white); g.setFont(font2);
-			g.drawString("0", 680, 495); g.drawString("90", 780, 495);
+			g.setFont(font);
+			g.setColor(Color.ORANGE);
+			g.drawString("Rotations:", 645, 440);
+			g.setColor(Color.ORANGE);
+			g.drawRect(645, 450, 95, 50);
+			g.drawRect(760, 450, 95, 50);
+			g.setColor(Color.white);
+			g.setFont(font2);
+			g.drawString("0", 680, 495);
+			g.drawString("90", 780, 495);
 
 
 		}
 
 		/*First Field*/
 		/*Size of one cell.*/
-		int cellSize = 50; for(int lx = 0; lx < 500; lx += 50) { /*Width 500px starts at 0px ends at 500px*/
+		int cellSize = 50;
+		for(int lx = 0; lx < 500; lx += 50) { /*Width 500px starts at 0px ends at 500px*/
 			for(int ly = 100; ly < 600; ly += 50) { /*Height 500px but starts at 100px so ends at 600px*/
-				g.setColor(Color.cyan); g.drawRect(lx, ly, cellSize, cellSize);
+				g.setColor(Color.cyan);
+				g.drawRect(lx, ly, cellSize, cellSize);
 			}
 		}
 		/*Second Field*/
 		for(int lx = 1000; lx < 1500; lx += 50) {  /*Width 500px starts at 1500px ends at 1000px*/
 			for(int ly = 100; ly < 600; ly += 50) { /*Height 500px but starts at 100px so ends at 600px*/
-				g.setColor(Color.green); g.drawRect(lx, ly, cellSize, cellSize);
+				g.setColor(Color.green);
+				g.drawRect(lx, ly, cellSize, cellSize);
 			}
 		}
 
 		/*Calls render Methods from the other classes so that they will be rendered as well.*/
-		handler.render(g); hud.render(g);
+		handler.render(g);
+		hud.render(g);
 
-	} if(gameState == STATE.Help) {
+	}
+	if(gameState == STATE.Help) {
 		help.render(g);
-	} if(gameState == STATE.Menu) {
+	}
+	if(gameState == STATE.Menu) {
 		menu.render(g);
 	}
 	/*Shows the Objects in the buffer.*/
-	g.dispose(); bs.show();
+	g.dispose();
+	bs.show();
 
 
 }

@@ -17,7 +17,9 @@ protected int velX, velY; /*velX, velY velocity means how fast object is moving.
  */
 public GameObject(int pixelX, int pixelY, ID id) {
 
-	this.pixelX = pixelX; this.pixelY = pixelY; this.id = id;
+	this.pixelX = pixelX;
+	this.pixelY = pixelY;
+	this.id     = id;
 }
 
 

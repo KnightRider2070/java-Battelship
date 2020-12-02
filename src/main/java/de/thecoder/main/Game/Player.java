@@ -25,7 +25,9 @@ private       boolean isHit = false; /*To check if the attacker hit*/
  */
 public Player(final int pixelX, final int pixelY, final ID id, final Handler handler, final Game game) {
 
-	super(pixelX, pixelY, id); this.handler = handler; this.game = game;
+	super(pixelX, pixelY, id);
+	this.handler = handler;
+	this.game    = game;
 }
 
 /**
@@ -70,11 +72,14 @@ public boolean setShip(int arrayX, int arrayY, int field, int shipType, int rota
 			if(arrayX + shipSize < Game.shipPosition.length) /*If statement check if the ship not exceeding length.*/
 				for(int i = 1; i <= shipSize; ++ i) { /*Loops through the ship.*/
 					if(Game.shipPosition[arrayX + i][arrayY][field] != 0) /*Checks if field is !free.*/
-						break; counter++;
-				} if(counter == shipSize) { /*If all positions for ship are free places it.*/
+						break;
+					counter++;
+				}
+			if(counter == shipSize) { /*If all positions for ship are free places it.*/
 				for(int i = 0; i < shipSize; ++ i) {
 					Game.shipPosition[arrayX + i][arrayY][field] = shipType;
-				} if(field == 0) {
+				}
+				if(field == 0) {
 					handler.addObjectOne(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
 					return true;
 				} else if(field == 1) {
@@ -90,11 +95,14 @@ public boolean setShip(int arrayX, int arrayY, int field, int shipType, int rota
 			if(arrayY + shipSize < Game.shipPosition.length)
 				for(int i = 0; i < shipSize; ++ i) {
 					if(Game.shipPosition[arrayX][arrayY + i][field] != 0)
-						break; counter++;
-				} if(counter == shipSize) {
+						break;
+					counter++;
+				}
+			if(counter == shipSize) {
 				for(int i = 0; i < shipSize; ++ i) {
 					Game.shipPosition[arrayX][arrayY + i][field] = shipType;
-				} if(field == 0) {
+				}
+				if(field == 0) {
 					handler.addObjectOne(Game.shipTypeToObject(arrayX, arrayY, field, shipType, rotation, handler));
 					return true;
 				} else if(field == 1) {
@@ -106,7 +114,8 @@ public boolean setShip(int arrayX, int arrayY, int field, int shipType, int rota
 				return false;
 			}
 		}
-	} return false;
+	}
+	return false;
 }
 
 
@@ -121,14 +130,16 @@ public void theGameAttackManager(int rawPixelX, int rawPixelY) {
 
 	if(Game.gameState == STATE.GamePlayer1) {
 		/*Executes the methode that contains the attack logic.*/
-		theAttackOrder(rawPixelX, rawPixelY); if(isHit) {/*Checks if attack was hit or miss.*/
+		theAttackOrder(rawPixelX, rawPixelY);
+		if(isHit) {/*Checks if attack was hit or miss.*/
 			HUD.setMessageOne("Attack again!");
 		} else {
 			Game.gameState = STATE.GamePlayer2;
 		}
 		/*Equals above but with a different player.*/
 	} else if(Game.gameState == STATE.GamePlayer2) {
-		theAttackOrder(rawPixelX, rawPixelY); if(isHit) {
+		theAttackOrder(rawPixelX, rawPixelY);
+		if(isHit) {
 			HUD.setMessageTwo("Attack again!");
 		} else {
 			Game.gameState = STATE.GamePlayer1;
@@ -160,10 +171,14 @@ public void theAttackOrder(int rawPixelX, int rawPixelY) {
 
 	/*Checks if a player won the game.*/
 	if(Game.getShipsAlivePlayerOne() == 0) {
-		Game.gameState = STATE.GameEnd; HUD.setMessageAll("GAME ENDED!"); HUD.setMessageOne("LOST :(!");
+		Game.gameState = STATE.GameEnd;
+		HUD.setMessageAll("GAME ENDED!");
+		HUD.setMessageOne("LOST :(!");
 		HUD.setMessageTwo("WON :)!");
 	} else if(Game.getShipsAlivePlayerTwo() == 0) {
-		Game.gameState = STATE.GameEnd; HUD.setMessageAll("GAME ENDED!"); HUD.setMessageOne("WON :)!");
+		Game.gameState = STATE.GameEnd;
+		HUD.setMessageAll("GAME ENDED!");
+		HUD.setMessageOne("WON :)!");
 		HUD.setMessageTwo("LOST :(!");
 	} else
 		attackTheShip(pixelX, pixelY, arrayX, arrayY, field, shipType);
@@ -200,14 +215,17 @@ public void attackTheShip(int pixelX, int pixelY, int arrayX, int arrayY, int fi
 			} else {
 				if(field == 0) { /*If statement check field to know which player is playing and who is being
 				attacked.*/
-					isHit = true; HUD.setMessageTwo("HIT");
+					isHit = true;
+					HUD.setMessageTwo("HIT");
 				} else if(field == 1) {
-					isHit = true; HUD.setMessageOne("HIT");
+					isHit = true;
+					HUD.setMessageOne("HIT");
 				}
 			}
 		} else {
 			/*The attack was not a hit so it will add objects to show this.*/
-			isHit = false; if(field == 0)
+			isHit = false;
+			if(field == 0)
 				handler.addObjectTwo(new MissileFragment(pixelX, pixelY, "green", ID.MissileFragment));
 			else if(field == 1)
 				handler.addObjectOne(new MissileFragment(pixelX, pixelY, "green", ID.MissileFragment));
@@ -254,7 +272,8 @@ public boolean checkIfShipIsHit(int arrayX, int arrayY, int field, int shipType)
  */
 public boolean checkIfShipIsDestroyed(int arrayX, int arrayY, int field) {
 
-	int shipType = getShipTypeInArray(arrayX, arrayY, field); int shipTypeSize = Game.shipTypeToSize(shipType);
+	int shipType     = getShipTypeInArray(arrayX, arrayY, field);
+	int shipTypeSize = Game.shipTypeToSize(shipType);
 	/*shipStatus is an array list to that you can access it with indices. It should contain the parts of a ship.*/
 	List<Integer> shipStatus = new ArrayList<>();
 	/*counter is an integer. It should increase if one part is destroyed see following lines.*/
@@ -276,17 +295,20 @@ public boolean checkIfShipIsDestroyed(int arrayX, int arrayY, int field) {
 				                                                                field) == shipType) {
 					shipStatus.add(getShipCondition(arrayX + i, arrayY, field));
 				}
-			} if(arrayX - i >= 0) {
+			}
+			if(arrayX - i >= 0) {
 				if(checkIfShip(arrayX - i, arrayY, field) && getShipTypeInArray(arrayX - i, arrayY,
 				                                                                field) == shipType) {
 					shipStatus.add(getShipCondition(arrayX - i, arrayY, field));
 				}
-			} if(arrayY + i < Game.shipPosition.length) {
+			}
+			if(arrayY + i < Game.shipPosition.length) {
 				if(checkIfShip(arrayX, arrayY + i, field) && getShipTypeInArray(arrayX, arrayY + i,
 				                                                                field) == shipType) {
 					shipStatus.add(getShipCondition(arrayX, arrayY + i, field));
 				}
-			} if(arrayY - i >= 0) {
+			}
+			if(arrayY - i >= 0) {
 				if(checkIfShip(arrayX, arrayY - i, field) && getShipTypeInArray(arrayX, arrayY - i,
 				                                                                field) == shipType) {
 					shipStatus.add(getShipCondition(arrayX, arrayY - i, field));
@@ -300,7 +322,8 @@ public boolean checkIfShipIsDestroyed(int arrayX, int arrayY, int field) {
 		/*If statement uses i to access the array list and will check if all parts of a ship are destroyed.*/
 		if(position == shipType * 11)
 			counter++;
-	} return counter == shipTypeSize;
+	}
+	return counter == shipTypeSize;
 }
 
 /**

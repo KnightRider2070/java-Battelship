@@ -29,7 +29,8 @@ private final Player player;/*Is a reference to the player that was initialised 
  */
 public MouseInput(final Game game, final Player player) {
 
-	this.player = player; this.game = game;
+	this.player = player;
+	this.game   = game;
 }
 
 
@@ -57,12 +58,15 @@ private boolean mouseOver(int mouseX, int mouseY, int pixelX, int pixelY, int wi
  */
 public void mouseClicked(MouseEvent e) {
 
-	int button = e.getButton(); int mouseX = e.getX(); int mouseY = e.getY();
+	int button = e.getButton();
+	int mouseX = e.getX();
+	int mouseY = e.getY();
 
 	//Menu Listener
 	if(Game.gameState == STATE.Menu) {
 		if(mouseOver(mouseX, mouseY, 535, 200, 500, 70) && button == 1)
-			Game.gameState = STATE.GamePlayer1; if(mouseOver(mouseX, mouseY, 535, 400, 500, 70) && button == 1) {}
+			Game.gameState = STATE.GamePlayer1;
+		if(mouseOver(mouseX, mouseY, 535, 400, 500, 70) && button == 1) {}
 		//NOTHING
 		if(mouseOver(mouseX, mouseY, 535, 600, 500, 70) && button == 1)
 			Game.gameState = STATE.Help;
@@ -74,13 +78,15 @@ public void mouseClicked(MouseEvent e) {
 		/*The Website opener*/
 		if(button == 1 && mouseOver(mouseX, mouseY, 710, 470, 75, 25))
 			if(Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-				Desktop desktop = Desktop.getDesktop(); try {
+				Desktop desktop = Desktop.getDesktop();
+				try {
 					desktop.browse(new URI(url));
 				} catch(IOException | URISyntaxException exception) {
 					exception.printStackTrace();
 				}
 			} else {
-				Runtime runtime = Runtime.getRuntime(); try {
+				Runtime runtime = Runtime.getRuntime();
+				try {
 					runtime.exec("open " + url);
 				} catch(IOException exception) {
 					exception.printStackTrace();
@@ -98,94 +104,132 @@ public void mouseClicked(MouseEvent e) {
 			/*If statement will check if a drawn button is clicked.*/
 			if(mouseOver(mouseX, mouseY, 645, 150, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 1; HUD.setMessageAll("X set.");
+					arrayX = 1;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 1; HUD.setMessageAll("Y set.");
+					arrayY = 1;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 725, 150, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 2; HUD.setMessageAll("X set.");
+					arrayX = 2;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 2; HUD.setMessageAll("Y set.");
+					arrayY = 2;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 805, 150, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 3; HUD.setMessageAll("X set.");
+					arrayX = 3;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 3; HUD.setMessageAll("Y set.");
+					arrayY = 3;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 645, 220, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 4; HUD.setMessageAll("X set.");
+					arrayX = 4;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 4; HUD.setMessageAll("Y set.");
+					arrayY = 4;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 725, 220, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 5; HUD.setMessageAll("X set.");
+					arrayX = 5;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 5; HUD.setMessageAll("Y set.");
+					arrayY = 5;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 805, 220, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 6; HUD.setMessageAll("X set.");
+					arrayX = 6;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 6; HUD.setMessageAll("Y set.");
+					arrayY = 6;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 645, 290, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 7; HUD.setMessageAll("X set.");
+					arrayX = 7;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 7; HUD.setMessageAll("Y set.");
+					arrayY = 7;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 725, 290, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 8; HUD.setMessageAll("X set.");
+					arrayX = 8;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 8; HUD.setMessageAll("Y set.");
+					arrayY = 8;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 805, 290, 50, 50)) {
 				if(arrayX == 0) {
-					arrayX = 9; HUD.setMessageAll("X set.");
+					arrayX = 9;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 9; HUD.setMessageAll("Y set.");
+					arrayY = 9;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 645, 360, 210, 50)) {
 				if(arrayX == 0) {
-					arrayX = 10; HUD.setMessageAll("X set.");
+					arrayX = 10;
+					HUD.setMessageAll("X set.");
 				} else if(arrayY == 0) {
-					arrayY = 10; HUD.setMessageAll("Y set.");
+					arrayY = 10;
+					HUD.setMessageAll("Y set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 645, 430, 95, 50)) {
 				if(rotation == 0) {
-					rotation = 1; HUD.setMessageAll("Rotation set.");
+					rotation = 1;
+					HUD.setMessageAll("Rotation set.");
 				}
 			} else if(mouseOver(mouseX, mouseY, 760, 430, 95, 50)) {
 				if(rotation == 0) {
-					rotation = 90; HUD.setMessageAll("Rotation set.");
+					rotation = 90;
+					HUD.setMessageAll("Rotation set.");
 				}
 			}
 
 			/*Position status fields.*/
-			HUD.setMessageArrayX(arrayX); HUD.setMessageArrayY(arrayY); HUD.setMessageRotation(rotation);
+			HUD.setMessageArrayX(arrayX);
+			HUD.setMessageArrayY(arrayY);
+			HUD.setMessageRotation(rotation);
 			HUD.setMessageShipType(shipType);
 
 
 			if(arrayX != 0 && arrayY != 0 && rotation != 0) {/*If statement check if required integers are entered.*/
 				/*Changes values that they are usable.*/
 				if(rotation == 1)
-					rotation = 0; arrayX--; arrayY--;
+					rotation = 0;
+				arrayX--;
+				arrayY--;
 
 				/*If statement will check if it is possible to set a ship.*/
 				if(player.setShip(arrayX, arrayY, field, shipType, rotation)) {
-					HUD.setMessageAll(" "); rotation = 0; arrayX = 0; arrayY = 0; shipType++;
+					HUD.setMessageAll(" ");
+					rotation = 0;
+					arrayX   = 0;
+					arrayY   = 0;
+					shipType++;
 					if(shipType > 5 && field == 0) {
-						HUD.setMessageAll("Player 2 pls"); shipType = 1; field = 1; Game.gameState = STATE.GamePlayer2;
+						HUD.setMessageAll("Player 2 pls");
+						shipType       = 1;
+						field          = 1;
+						Game.gameState = STATE.GamePlayer2;
 					} else if(shipType > 5 && field == 1) {
-						HUD.setMessageAll("Player 1 attack"); Game.STARTUP = false; Game.gameState = STATE.GamePlayer1;
+						HUD.setMessageAll("Player 1 attack");
+						Game.STARTUP   = false;
+						Game.gameState = STATE.GamePlayer1;
 					}
 				} else {
-					HUD.setMessageAll("Non valid Cords"); rotation = 0; arrayX = 0; arrayY = 0;
+					HUD.setMessageAll("Non valid Cords");
+					rotation = 0;
+					arrayX   = 0;
+					arrayY   = 0;
 				}
 			}
 
